@@ -1,2 +1,3 @@
-# moonfern
+# Moonfern
+
 MoonFern is a 2D narrative adventure game made in Godot, centered around a healer witch with a deep affinity for herbology, memory, and the living forest. The player follows a young woman from a forest-dwelling people whose survival depends on staying hidden within the woods...
