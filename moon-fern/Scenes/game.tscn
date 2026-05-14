@@ -1,8 +1,10 @@
 [gd_scene format=4 uid="uid://sl2fl5bw2wlb"]
 
 [ext_resource type="Texture2D" uid="uid://ddsu2cqsqo4yx" path="res://Sprites/working_assets.png" id="1_qxrlw"]
-[ext_resource type="Script" uid="uid://dijof527jbsms" path="res://Scenes/the_witch.gd" id="1_wrm1d"]
+[ext_resource type="Script" uid="uid://dijof527jbsms" path="res://Scripts/the_witch.gd" id="1_wrm1d"]
 [ext_resource type="Texture2D" uid="uid://btjogwkquka4l" path="res://Sprites/cauldron.png" id="2_qxrlw"]
+[ext_resource type="Script" uid="uid://c3y8x4hmowdns" path="res://Scripts/potion.gd" id="4_3dryh"]
+[ext_resource type="Script" uid="uid://i66jj27o3w4f" path="res://Scripts/herb.gd" id="5_wowpa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3dryh"]
 radius = 16.03122
@@ -273,7 +275,7 @@ position = Vector2(231.5, 554.75)
 shape = SubResource("CircleShape2D_3dryh")
 
 [node name="Camera2D" type="Camera2D" parent="TheWitch" unique_id=717312124]
-position = Vector2(277, 304)
+position = Vector2(209, 312)
 
 [node name="Area2D" type="Area2D" parent="TheWitch" unique_id=268729412]
 
@@ -352,7 +354,8 @@ texture = ExtResource("2_qxrlw")
 position = Vector2(910, 555.5)
 shape = SubResource("RectangleShape2D_wrm1d")
 
-[node name="Potion" type="StaticBody2D" parent="." unique_id=991020772]
+[node name="Potion" type="Area2D" parent="." unique_id=445703741]
+script = ExtResource("4_3dryh")
 
 [node name="Sprite2D" type="Sprite2D" parent="Potion" unique_id=135375243]
 position = Vector2(725, 348)
@@ -364,14 +367,18 @@ region_rect = Rect2(272.5304, 290.30276, 36.76941, 61.8591)
 position = Vector2(731, 352.5)
 shape = SubResource("RectangleShape2D_3dryh")
 
-[node name="Ingredient" type="StaticBody2D" parent="." unique_id=1328845761]
+[node name="Herb" type="Area2D" parent="." unique_id=1998834664]
+script = ExtResource("5_wowpa")
 
-[node name="Sprite2D" type="Sprite2D" parent="Ingredient" unique_id=1125149645]
+[node name="Sprite2D" type="Sprite2D" parent="Herb" unique_id=1125149645]
 position = Vector2(472, 452)
 texture = ExtResource("1_qxrlw")
 region_enabled = true
 region_rect = Rect2(311.1662, 305.76932, 26.38742, 40.66263)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ingredient" unique_id=1729247818]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Herb" unique_id=1729247818]
 position = Vector2(472, 451)
 shape = SubResource("RectangleShape2D_i6g32")
+
+[connection signal="body_entered" from="Potion" to="Potion" method="_on_body_entered"]
+[connection signal="body_entered" from="Herb" to="Herb" method="_on_body_entered"]
