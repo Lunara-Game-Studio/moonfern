@@ -7,7 +7,6 @@ Lunara meeting:
 - tasks divided
 
 Done:
-
 - set up repository and organization page
 - prototype 50% done
 - implemented:
