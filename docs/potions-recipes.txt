@@ -1,0 +1,80 @@
+----IN THIS FILE----
+
+1. Herbs
+2. Potions
+3. Potion Recipes
+
+--------------------
+	HERBS
+--------------------
+
+1. Moonwort (Botrychium lunarna)
+
+A small mystical fern traditionally used in fol medicine
+And lunar herbalism, associated with healing and hidden knowledge 
+
+2. Wall Rue (Salvis vitae)
+
+Up to 3 inches high, grows in tufts and crevices of walls. Pale-green
+colored, considered good for coughs and ruptures in children.
+
+3. Mandrake
+
+Tubers that look like newborns, their screams can kill when fully grown.
+Can bring the petrified back to life. (Harry Potter Reference)
+
+# gameplay idea: Slows down enemies for 5 seconds after harvesting
+
+4. Feainnewedd
+
+A flower which , according to the legend, grows only in places where elder blood has been
+Spilled, and in Dol Blathanna. (The Witcher 3 reference)
+
+5. Poppy Flowers
+
+A powerful liquid medicine, similar to opium; eases pain and can be used as an anesthetic.
+Made with crushed poppy flowers
+
+
+--------------------
+       POTIONS
+--------------------
+### Numbers reflect the recommended usage sequence, unless we don't want to restrict the player and specify levels
+
+1. Milk of the Poppy (Game of Thrones reference)
+
+Strong anesthetic used during surgery in GoT -> I suggest using it first
+As the first stage of healing the tree
+
+2.  Mandrake Restorative Draught (Harry Potter Reference)
+
+A powerful healing potion used to restore those who have been petrified or transfigured to their original state -> I suggest using it second as in other franchises it is not used primarily as a healing potion, but as a tool to revert the patient to their original state
+
+3. Rubedo
+
+When used in subsequent potion brewing provides an additional passive regeneration to vitality
+(In The Witcher 3: Wild Hunt) -> I suggest using it 3rd as it isn't the strongest healing potion in game
+
+4. Lunaria
+
+In many games used as a healing potion, I recommend using it last as both the name of the potion "lunaria" and the name of the herb "moonwort" connect to the game itself (moonfern) and the name of the studio (Lunara Games)
+
+--------------------
+       RECIPES
+--------------------
+
+1. Milk of the Poppy
+
+	- Poppy Flower + Wall Rue
+
+2.  Mandrake Restorative Draught
+	
+	- Mandrake + Wall Rue
+
+3. Rubedo
+
+	- Feainnewedd + Poppy Flower + Wall Rue
+
+4. Lunaria 
+
+	- Moonwort + Feainnewedd + Poppy Flower + Mandrake
