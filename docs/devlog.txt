@@ -14,3 +14,12 @@ Done:
   + pick up 
   + character movement
 
+| Friday, May 15th 2026
+
+Meeting: postponed to Monday
+
+Done:
+- potion recipes (see potion_recipes.txt)
+- concept sketch, world design
+- gameplay loop concept (|------70%--|)
+- decision -----> platformer style gameplay ---reason---> making sure the game is compact enough
