@@ -35,6 +35,39 @@ Spilled, and in Dol Blathanna. (The Witcher 3 reference)
 A powerful liquid medicine, similar to opium; eases pain and can be used as an anesthetic.
 Made with crushed poppy flowers
 
+--------------------
+   HARMFUL HERBS
+--------------------
+
+1. Poison Hemlock 
+
+A highly toxic plant containing Connie. Causes ascending paralysis and respiratory failure 
+
+2. Night Howler (Midnicampum holitcithias)
+
+A purple flower that contains a toxic compound that, upon entering the bloodstream causes mammals 
+To revert to a violent feral state - Zootopia reference 
+
+3. Albert Ivy
+
+Upon consumption causes intense neurological hallucinations. Distinguishable from regular ivy by the presence of orange petals.
+
+~Designed by Marley Feldman 
+
+4. Druid's Sorrow - Star Stable reference
+
+It represents grief, tragedy and historical loses the Druid suffered fighting dark forces
+
+4. Love Fern
+
+A pale, moonlit herb known for its silvery leaves. Toxic when consumed, slowly draining strength and vitality over time.
+Found it damp areas untouched by sunshine.
+
+*Inspired by Scarlett Wallis and "How to lose a guy in 10 days"
+
+5. Woolfsbane - The Witcher 3 reference 
+
+A highly toxic herb, famous for being a core ingredient in the decoctions used during the Witcher Trials. It is also utilized in crafting lethal poisons
 
 --------------------
        POTIONS
