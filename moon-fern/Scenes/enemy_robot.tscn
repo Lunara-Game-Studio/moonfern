@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bi53qefaxicd1"]
 
+[ext_resource type="Script" path="res://Scripts/gleamwrought_enemy.gd" id="1_gleam"]
 [ext_resource type="Texture2D" uid="uid://ddsu2cqsqo4yx" path="res://Sprites/working_assets.png" id="1_ug42x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_28r5x"]
@@ -9,6 +10,7 @@ size = Vector2(21, 55.625)
 size = Vector2(47, 65)
 
 [node name="EnemyRobot" type="CharacterBody2D" unique_id=1260298667]
+script = ExtResource("1_gleam")
 
 [node name="Robot" type="Sprite2D" parent="." unique_id=817862422]
 texture = ExtResource("1_ug42x")

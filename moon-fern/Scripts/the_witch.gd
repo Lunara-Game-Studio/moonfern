@@ -13,6 +13,7 @@ const PLAYER_COLLISION_FALLBACK_HALF := 16.0
 
 const HERB_PICKUP_SCENE := preload("res://Scenes/herb_pickup.tscn")
 const POTION_PICKUP_SCENE := preload("res://Scenes/potion_pickup.tscn")
+const INTERACT_FALLBACK_RADIUS := 100.0
 
 var inventory: Array[String] = []
 var carried_item_type: String = ""
@@ -22,7 +23,9 @@ var nearby_interactable: Node = null
 var last_facing_direction := 1
 
 func _ready() -> void:
+	add_to_group("player")
 	print("TheWitch script ready")
+	_update_carry_hud()
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -71,23 +74,56 @@ func pick_up_item(item_type: String) -> bool:
 	is_carrying = true
 	inventory = [item_type]
 	print("Picked up: ", item_type)
+	_update_carry_hud()
 	return true
 
 
 func consume_carried_item(expected_type: String) -> bool:
+	print(
+		"Trying to consume: ",
+		expected_type,
+		", currently carrying: ",
+		carried_item_type if is_carrying else "nothing"
+	)
 	if not has_carried_item(expected_type):
 		return false
 
 	carried_item_type = ""
 	is_carrying = false
 	inventory.clear()
+	_update_carry_hud()
 	return true
 
 
 func replace_carried_item(new_item_type: String) -> void:
+	if is_carrying:
+		push_warning("replace_carried_item called while still carrying something")
+		return
+	print("Replacing carried item with: ", new_item_type)
 	carried_item_type = new_item_type
 	is_carrying = true
 	inventory = [new_item_type]
+	_update_carry_hud()
+
+
+func give_brewed_item(item_type: String) -> bool:
+	if not can_pick_up():
+		return false
+	return pick_up_item(item_type)
+
+
+func _update_carry_hud() -> void:
+	var label := get_tree().get_first_node_in_group("carry_hud_label")
+	if label is Label:
+		label.text = "Carrying: %s" % carried_item_type if is_carrying else ""
+
+
+func on_caught_by_enemy() -> void:
+	if is_carrying:
+		drop_item()
+		print("Nyra dropped item after being caught")
+	else:
+		print("Nyra was caught but had nothing to drop")
 
 
 func drop_item() -> void:
@@ -100,6 +136,7 @@ func drop_item() -> void:
 	inventory.clear()
 	nearby_pickup = null
 	print("Dropped: ", dropped_type)
+	_update_carry_hud()
 	_spawn_dropped_pickup(dropped_type)
 
 
@@ -220,6 +257,49 @@ func unregister_nearby_interactable(interactable: Node) -> void:
 	if nearby_interactable == interactable:
 		nearby_interactable = null
 	print("Unregistered interactable: ", interactable.name)
+	call_deferred("_refresh_nearby_interactable")
+
+
+func _refresh_nearby_interactable() -> void:
+	var found := _find_interactable_in_range()
+	if found:
+		nearby_interactable = found
+		print("Refreshed active interactable: ", found.name)
+
+
+func _get_interact_area_center(interact_area: Area2D) -> Vector2:
+	var collision := interact_area.get_node_or_null("CollisionShape2D") as CollisionShape2D
+	if collision:
+		return collision.global_position
+	return interact_area.global_position
+
+
+func _is_player_overlapping_area(interact_area: Area2D) -> bool:
+	for body in interact_area.get_overlapping_bodies():
+		if body == self:
+			return true
+	return false
+
+
+func _find_interactable_in_range() -> Node:
+	var player_center: Vector2 = _get_player_collision_bounds()["center"]
+	var best: Node = null
+	var best_distance := INTERACT_FALLBACK_RADIUS
+
+	for node in get_tree().get_nodes_in_group("interactable"):
+		if not node.has_method("interact"):
+			continue
+		var interact_area := node.get_node_or_null("InteractArea") as Area2D
+		if interact_area == null:
+			continue
+		if not _is_player_overlapping_area(interact_area):
+			continue
+		var distance := player_center.distance_to(_get_interact_area_center(interact_area))
+		if distance <= best_distance:
+			best_distance = distance
+			best = node
+
+	return best
 
 
 func _try_pickup() -> void:
@@ -240,10 +320,29 @@ func _try_pickup() -> void:
 
 
 func _try_interact() -> void:
-	if nearby_interactable == null or not is_instance_valid(nearby_interactable):
+	print(
+		"Currently carrying: ",
+		carried_item_type if is_carrying else "nothing"
+	)
+
+	var target := nearby_interactable
+	if target != null and is_instance_valid(target):
+		var area := target.get_node_or_null("InteractArea") as Area2D
+		if area and not _is_player_overlapping_area(area):
+			print("Active interactable not in range, searching: ", target.name)
+			target = null
+	elif target != null:
+		target = null
+
+	if target == null:
+		target = _find_interactable_in_range()
+
+	if target == null:
 		print("No nearby interactable")
 		return
 
-	print("Interacting with: ", nearby_interactable.name)
-	if nearby_interactable.has_method("interact"):
-		nearby_interactable.interact(self)
+	print("Interacting with: ", target.name)
+	if target.has_method("interact"):
+		target.interact(self)
+	else:
+		print("Active interactable has no interact() method: ", target.name)

@@ -5,6 +5,7 @@ const ITEM_TYPE := "Herb"
 var _pickup_enabled := true
 
 func _ready() -> void:
+	add_to_group("herb_pickup")
 	if not body_entered.is_connected(_on_body_entered):
 		body_entered.connect(_on_body_entered)
 	if not body_exited.is_connected(_on_body_exited):

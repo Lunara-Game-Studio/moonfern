@@ -3,10 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://ddsu2cqsqo4yx" path="res://Sprites/working_assets.png" id="1_qxrlw"]
 [ext_resource type="Script" uid="uid://dijof527jbsms" path="res://Scripts/the_witch.gd" id="1_wrm1d"]
 [ext_resource type="Texture2D" uid="uid://btjogwkquka4l" path="res://Sprites/cauldron.png" id="2_qxrlw"]
-[ext_resource type="Script" uid="uid://c3y8x4hmowdns" path="res://Scripts/potion.gd" id="4_3dryh"]
 [ext_resource type="Script" uid="uid://i66jj27o3w4f" path="res://Scripts/herb.gd" id="5_wowpa"]
 [ext_resource type="Script" path="res://Scripts/cauldron.gd" id="6_cauld"]
 [ext_resource type="Script" path="res://Scripts/healing_tree.gd" id="7_htree"]
+[ext_resource type="PackedScene" uid="uid://bi53qefaxicd1" path="res://Scenes/enemy_robot.tscn" id="8_enemy"]
+[ext_resource type="Script" path="res://Scripts/corruption_feedback.gd" id="9_cfb"]
+[ext_resource type="Script" path="res://Scripts/tree_corruption_hud.gd" id="10_hud"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3dryh"]
 radius = 16.03122
@@ -268,6 +270,7 @@ size = Vector2(120, 110)
 size = Vector2(120, 90)
 
 [node name="Game" type="Node2D" unique_id=623895467]
+script = ExtResource("9_cfb")
 
 [node name="TheWitch" type="CharacterBody2D" parent="." unique_id=1722578828]
 script = ExtResource("1_wrm1d")
@@ -384,19 +387,6 @@ texture = ExtResource("2_qxrlw")
 position = Vector2(910, 555.5)
 shape = SubResource("RectangleShape2D_wrm1d")
 
-[node name="Potion" type="Area2D" parent="." unique_id=445703741]
-script = ExtResource("4_3dryh")
-
-[node name="Sprite2D" type="Sprite2D" parent="Potion" unique_id=135375243]
-position = Vector2(725, 348)
-texture = ExtResource("1_qxrlw")
-region_enabled = true
-region_rect = Rect2(272.5304, 290.30276, 36.76941, 61.8591)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Potion" unique_id=1330291461]
-position = Vector2(731, 352.5)
-shape = SubResource("RectangleShape2D_3dryh")
-
 [node name="Herb" type="Area2D" parent="." unique_id=1998834664]
 script = ExtResource("5_wowpa")
 
@@ -410,5 +400,50 @@ region_rect = Rect2(311.1662, 305.76932, 26.38742, 40.66263)
 position = Vector2(472, 451)
 shape = SubResource("RectangleShape2D_i6g32")
 
-[connection signal="body_entered" from="Potion" to="Potion" method="_on_body_entered"]
+[node name="Gleamwrought" parent="." instance=ExtResource("8_enemy")]
+position = Vector2(620, 520)
+
+[node name="CorruptionHUD" type="CanvasLayer" parent="."]
+
+[node name="HUDPanel" type="Control" parent="CorruptionHUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 280.0
+offset_bottom = 72.0
+script = ExtResource("10_hud")
+
+[node name="MarginContainer" type="MarginContainer" parent="CorruptionHUD/HUDPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CorruptionHUD/HUDPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="StatusLabel" type="Label" parent="CorruptionHUD/HUDPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Tree Health: 100%"
+
+[node name="HealthBar" type="ProgressBar" parent="CorruptionHUD/HUDPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(220, 18)
+layout_mode = 2
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="CarryHUD" type="CanvasLayer" parent="."]
+
+[node name="CarryLabel" type="Label" parent="CarryHUD" groups=["carry_hud_label"]]
+offset_left = 16.0
+offset_top = 80.0
+offset_right = 240.0
+offset_bottom = 104.0
+text = ""
+
 [connection signal="body_entered" from="Herb" to="Herb" method="_on_body_entered"]
