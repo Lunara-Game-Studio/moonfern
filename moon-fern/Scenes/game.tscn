@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://btjogwkquka4l" path="res://Sprites/cauldron.png" id="2_qxrlw"]
 [ext_resource type="Script" uid="uid://c3y8x4hmowdns" path="res://Scripts/potion.gd" id="4_3dryh"]
 [ext_resource type="Script" uid="uid://i66jj27o3w4f" path="res://Scripts/herb.gd" id="5_wowpa"]
+[ext_resource type="Script" path="res://Scripts/cauldron.gd" id="6_cauld"]
+[ext_resource type="Script" path="res://Scripts/healing_tree.gd" id="7_htree"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3dryh"]
 radius = 16.03122
@@ -259,6 +261,12 @@ size = Vector2(22, 27)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i6g32"]
 size = Vector2(21, 27)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tree_interact"]
+size = Vector2(120, 110)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cauldron_interact"]
+size = Vector2(120, 90)
+
 [node name="Game" type="Node2D" unique_id=623895467]
 
 [node name="TheWitch" type="CharacterBody2D" parent="." unique_id=1722578828]
@@ -294,6 +302,17 @@ tile_map_data = PackedByteArray("AAAJAB8AAAAMABgAAAD8/x8AAAAJABgAAAD9/x8AAAAKABg
 tile_set = SubResource("TileSet_h4fw4")
 
 [node name="Tree" type="StaticBody2D" parent="." unique_id=1434168845]
+script = ExtResource("7_htree")
+
+[node name="InteractArea" type="Area2D" parent="Tree"]
+monitoring = true
+monitorable = true
+collision_layer = 0
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/InteractArea"]
+position = Vector2(1619, 476.5)
+shape = SubResource("RectangleShape2D_tree_interact")
 
 [node name="Tree I" type="Sprite2D" parent="Tree" unique_id=320785314]
 position = Vector2(1616, 478)
@@ -345,6 +364,17 @@ position = Vector2(77, -74.5)
 shape = SubResource("RectangleShape2D_o5yvi")
 
 [node name="Cauldron" type="StaticBody2D" parent="." unique_id=1381955034]
+script = ExtResource("6_cauld")
+
+[node name="InteractArea" type="Area2D" parent="Cauldron"]
+monitoring = true
+monitorable = true
+collision_layer = 0
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cauldron/InteractArea"]
+position = Vector2(910, 555.5)
+shape = SubResource("RectangleShape2D_cauldron_interact")
 
 [node name="Sprite2D" type="Sprite2D" parent="Cauldron" unique_id=1982286376]
 position = Vector2(912, 554)

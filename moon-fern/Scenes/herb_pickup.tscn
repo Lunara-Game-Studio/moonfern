@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bherbpickup01"]
+
+[ext_resource type="Script" path="res://Scripts/herb.gd" id="1_herb"]
+[ext_resource type="Texture2D" path="res://Sprites/working_assets.png" id="2_tex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_herb"]
+size = Vector2(21, 27)
+
+[node name="HerbPickup" type="Area2D"]
+script = ExtResource("1_herb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tex")
+region_enabled = true
+region_rect = Rect2(311.1662, 305.76932, 26.38742, 40.66263)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_herb")

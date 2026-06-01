@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dbw2lyohj5dmu"]
+
+[ext_resource type="Script" path="res://Scripts/potion.gd" id="1_potion"]
+[ext_resource type="Texture2D" path="res://Sprites/working_assets.png" id="2_tex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_potion"]
+size = Vector2(22, 27)
+
+[node name="PotionPickup" type="Area2D"]
+script = ExtResource("1_potion")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tex")
+region_enabled = true
+region_rect = Rect2(272.5304, 290.30276, 36.76941, 61.8591)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_potion")

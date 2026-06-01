@@ -1,21 +1,34 @@
 extends Area2D
 
-var item_data = {
-	"name" : "Herb",
-	"id" : "herb"
-}
+const ITEM_TYPE := "Herb"
 
-# Called when the node enters the scene tree for the first time.
+var _pickup_enabled := true
+
 func _ready() -> void:
-	pass # Replace with function body.
+	if not body_entered.is_connected(_on_body_entered):
+		body_entered.connect(_on_body_entered)
+	if not body_exited.is_connected(_on_body_exited):
+		body_exited.connect(_on_body_exited)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func enable_pickup_after_delay(seconds: float) -> void:
+	_pickup_enabled = false
+	get_tree().create_timer(seconds).timeout.connect(func() -> void:
+		_pickup_enabled = true
+	)
+
+
+func get_item_type() -> String:
+	return ITEM_TYPE
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.name == "TheWitch" && body.full_inventory == false:
-		body.add_item("Herb")
-		call_deferred("queue_free")
+	if not _pickup_enabled:
+		return
+	if body.has_method("register_nearby_pickup"):
+		body.register_nearby_pickup(self)
+
+
+func _on_body_exited(body: Node2D) -> void:
+	if body.has_method("unregister_nearby_pickup"):
+		body.unregister_nearby_pickup(self)
