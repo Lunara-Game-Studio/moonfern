@@ -10,6 +10,8 @@
 [ext_resource type="Script" path="res://Scripts/corruption_feedback.gd" id="9_cfb"]
 [ext_resource type="Script" path="res://Scripts/tree_corruption_hud.gd" id="10_hud"]
 [ext_resource type="Script" path="res://Scripts/player_feedback_ui.gd" id="11_feedback"]
+[ext_resource type="Script" path="res://Scripts/forest_shield_manager.gd" id="12_fshield"]
+[ext_resource type="Script" path="res://Scripts/forest_shield_hud.gd" id="13_fshud"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3dryh"]
 radius = 16.03122
@@ -273,6 +275,9 @@ size = Vector2(120, 90)
 [node name="Game" type="Node2D" unique_id=623895467]
 script = ExtResource("9_cfb")
 
+[node name="ForestShieldManager" type="Node" parent="."]
+script = ExtResource("12_fshield")
+
 [node name="TheWitch" type="CharacterBody2D" parent="." unique_id=1722578828]
 script = ExtResource("1_wrm1d")
 
@@ -405,8 +410,10 @@ shape = SubResource("RectangleShape2D_i6g32")
 position = Vector2(620, 520)
 
 [node name="CorruptionHUD" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="HUDPanel" type="Control" parent="CorruptionHUD"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 16.0
@@ -438,26 +445,101 @@ max_value = 100.0
 value = 100.0
 show_percentage = false
 
+[node name="ForestShieldHUD" type="CanvasLayer" parent="."]
+script = ExtResource("13_fshud")
+
+[node name="MinimalHUD" type="Control" parent="ForestShieldHUD"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -204.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 56.0
+grow_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="ForestShieldHUD/MinimalHUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="ForestShieldHUD/MinimalHUD/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="ShieldLabel" type="Label" parent="ForestShieldHUD/MinimalHUD/MarginContainer/VBox"]
+layout_mode = 2
+text = "Forest Shield: 100%"
+horizontal_alignment = 2
+
+[node name="ShieldBar" type="ProgressBar" parent="ForestShieldHUD/MinimalHUD/MarginContainer/VBox"]
+custom_minimum_size = Vector2(180, 10)
+layout_mode = 2
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="ForestStatusPanel" type="PanelContainer" parent="ForestShieldHUD"]
+visible = false
+offset_left = 16.0
+offset_top = 200.0
+offset_right = 276.0
+offset_bottom = 340.0
+
+[node name="MarginContainer" type="MarginContainer" parent="ForestShieldHUD/ForestStatusPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBox" type="VBoxContainer" parent="ForestShieldHUD/ForestStatusPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TitleLabel" type="Label" parent="ForestShieldHUD/ForestStatusPanel/MarginContainer/VBox"]
+layout_mode = 2
+text = "Forest Status"
+
+[node name="TreeRows" type="VBoxContainer" parent="ForestShieldHUD/ForestStatusPanel/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Tree1Label" type="Label" parent="ForestShieldHUD/ForestStatusPanel/MarginContainer/VBox/TreeRows"]
+layout_mode = 2
+text = "Forest Floor Tree: 100% — Healthy"
+
+[node name="Tree2Label" type="Label" parent="ForestShieldHUD/ForestStatusPanel/MarginContainer/VBox/TreeRows"]
+layout_mode = 2
+text = "Canopy Tree: 100% — Healthy"
+
+[node name="Tree3Label" type="Label" parent="ForestShieldHUD/ForestStatusPanel/MarginContainer/VBox/TreeRows"]
+layout_mode = 2
+text = "Underground Tree: 100% — Healthy"
+
+[node name="Tree4Label" type="Label" parent="ForestShieldHUD/ForestStatusPanel/MarginContainer/VBox/TreeRows"]
+layout_mode = 2
+text = "Industrial Edge Tree: 100% — Healthy"
+
 [node name="PlayerFeedbackHUD" type="CanvasLayer" parent="."]
 script = ExtResource("11_feedback")
 
 [node name="CarryLabel" type="Label" parent="PlayerFeedbackHUD" groups=["carry_hud_label"]]
 offset_left = 16.0
-offset_top = 80.0
-offset_right = 280.0
-offset_bottom = 104.0
+offset_top = 16.0
+offset_right = 260.0
+offset_bottom = 40.0
 text = "Carrying: Empty"
 
 [node name="NotificationLabel" type="Label" parent="PlayerFeedbackHUD"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -200.0
-offset_top = 16.0
-offset_right = 200.0
-offset_bottom = 48.0
-grow_horizontal = 2
-horizontal_alignment = 1
+offset_left = 16.0
+offset_top = 44.0
+offset_right = 300.0
+offset_bottom = 68.0
 text = ""
 
 [node name="InventoryPanel" type="PanelContainer" parent="PlayerFeedbackHUD"]

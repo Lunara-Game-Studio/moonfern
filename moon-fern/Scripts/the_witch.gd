@@ -51,6 +51,11 @@ func _physics_process(delta: float) -> void:
 		if ui and ui.has_method("toggle_inventory_panel"):
 			ui.toggle_inventory_panel()
 
+	if Input.is_action_just_pressed("forest_status"):
+		var shield_hud := get_tree().get_first_node_in_group("forest_shield_hud")
+		if shield_hud and shield_hud.has_method("toggle_forest_status_panel"):
+			shield_hud.toggle_forest_status_panel() # M — forest status panel
+
 	var direction := Input.get_axis("move_left", "move_right")
 	var move_speed := SPEED * (CARRY_SPEED_MULTIPLIER if is_carrying else 1.0)
 	if direction != 0.0:

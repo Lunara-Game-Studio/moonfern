@@ -10,12 +10,16 @@ signal healed
 @export var corruption_rate: float = 5.0
 @export var critical_threshold: float = 30.0
 @export var health_debug_interval: float = 5.0
+@export var healing_amount_per_potion: float = 25.0
 
 var is_healed := false
 var _was_critical := false
 var _was_fully_corrupted := false
 var _health_debug_timer := 0.0
 var _pulse_time := 0.0
+
+# Future: optional per-tree damage blocks (not interactive in this branch).
+var damage_blocks: Array[int] = [100, 100, 100, 100]
 
 @onready var _interact_area: Area2D = get_node_or_null("InteractArea")
 @onready var _sprite: Sprite2D = $"Tree I"
@@ -68,6 +72,27 @@ func is_fully_corrupted() -> bool:
 	return not is_healed and current_tree_health <= 0.0
 
 
+func is_restored() -> bool:
+	return (
+		not is_healed
+		and not is_fully_corrupted()
+		and not is_critical()
+		and get_health_percent() < 100.0
+	)
+
+
+func get_tree_status_text() -> String:
+	if is_healed:
+		return "Healed"
+	if is_fully_corrupted():
+		return "Fully Corrupted"
+	if is_critical():
+		return "Critical"
+	if is_restored():
+		return "Restored"
+	return "Healthy"
+
+
 func _tick_corruption(delta: float) -> void:
 	if current_tree_health <= 0.0:
 		return
@@ -97,8 +122,7 @@ func interact(player: Node) -> void:
 
 	if player.has_method("has_carried_item") and player.has_carried_item("Potion"):
 		if player.consume_carried_item("Potion"):
-			_apply_heal()
-			_notify(player, "Tree healed!")
+			_apply_potion_heal(player)
 			print("Tree healed from carried Potion")
 		else:
 			_notify(player, "Need Potion to heal this tree")
@@ -115,10 +139,8 @@ func interact(player: Node) -> void:
 	var dropped_potion := _find_dropped_potion_in_area()
 	if dropped_potion:
 		dropped_potion.queue_free()
-		_apply_heal()
-		_notify(player, "Tree healed!")
+		_apply_potion_heal(player)
 		print("Tree consumed dropped Potion")
-		print("Tree healed")
 		return
 
 	_notify(player, "Need Potion to heal this tree")
@@ -129,15 +151,37 @@ func _notify(player: Node, message: String) -> void:
 		player.show_notification(message)
 
 
-func _apply_heal() -> void:
+func _apply_potion_heal(player: Node) -> void:
 	var was_fully_corrupted := is_fully_corrupted()
-	is_healed = true
-	current_tree_health = max_tree_health
+	var before_percent: float = get_health_percent()
+
+	current_tree_health = minf(
+		max_tree_health,
+		current_tree_health + healing_amount_per_potion
+	)
+	current_tree_health = clampf(current_tree_health, 0.0, max_tree_health)
+
+	var after_percent: float = get_health_percent()
+	var gained_percent: int = maxi(0, int(round(after_percent - before_percent)))
+
 	_apply_visual()
+	health_changed.emit(after_percent)
+
+	if current_tree_health >= max_tree_health:
+		is_healed = true
+		current_tree_health = max_tree_health
+		print("Tree fully healed")
+		_notify(player, "Tree fully healed!")
+		healed.emit()
+		health_changed.emit(get_health_percent())
+		return
+
+	is_healed = false
+	print("Tree partially restored")
+	print("Tree health: %d%%" % int(round(after_percent)))
 	if was_fully_corrupted:
-		print("Restored fully corrupted tree")
-	healed.emit()
-	health_changed.emit(get_health_percent())
+		print("Restored part of fully corrupted tree")
+	_notify(player, "Tree restored +%d%%" % gained_percent)
 
 
 func _get_interact_bounds() -> Rect2:
