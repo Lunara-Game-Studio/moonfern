@@ -25,7 +25,7 @@ var last_facing_direction := 1
 func _ready() -> void:
 	add_to_group("player")
 	print("TheWitch script ready")
-	_update_carry_hud()
+	_sync_inventory_feedback()
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -45,6 +45,11 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("interact"):
 		print("interact pressed")
 		_try_interact()
+
+	if Input.is_action_just_pressed("inventory"):
+		var ui := _get_feedback_ui()
+		if ui and ui.has_method("toggle_inventory_panel"):
+			ui.toggle_inventory_panel()
 
 	var direction := Input.get_axis("move_left", "move_right")
 	var move_speed := SPEED * (CARRY_SPEED_MULTIPLIER if is_carrying else 1.0)
@@ -68,13 +73,15 @@ func has_carried_item(item_type: String) -> bool:
 func pick_up_item(item_type: String) -> bool:
 	if not can_pick_up():
 		print("Inventory full — cannot pick up ", item_type)
+		show_notification("Inventory full")
 		return false
 
 	carried_item_type = item_type
 	is_carrying = true
 	inventory = [item_type]
 	print("Picked up: ", item_type)
-	_update_carry_hud()
+	_sync_inventory_feedback()
+	show_notification("Picked up %s" % item_type)
 	return true
 
 
@@ -91,7 +98,7 @@ func consume_carried_item(expected_type: String) -> bool:
 	carried_item_type = ""
 	is_carrying = false
 	inventory.clear()
-	_update_carry_hud()
+	_sync_inventory_feedback()
 	return true
 
 
@@ -103,19 +110,38 @@ func replace_carried_item(new_item_type: String) -> void:
 	carried_item_type = new_item_type
 	is_carrying = true
 	inventory = [new_item_type]
-	_update_carry_hud()
+	_sync_inventory_feedback()
 
 
 func give_brewed_item(item_type: String) -> bool:
 	if not can_pick_up():
 		return false
-	return pick_up_item(item_type)
+	carried_item_type = item_type
+	is_carrying = true
+	inventory = [item_type]
+	_sync_inventory_feedback()
+	return true
 
 
-func _update_carry_hud() -> void:
-	var label := get_tree().get_first_node_in_group("carry_hud_label")
-	if label is Label:
-		label.text = "Carrying: %s" % carried_item_type if is_carrying else ""
+func show_notification(message: String) -> void:
+	var ui := _get_feedback_ui()
+	if ui and ui.has_method("show_notification"):
+		ui.show_notification(message)
+
+
+func _sync_inventory_feedback() -> void:
+	var item_type := carried_item_type if is_carrying else ""
+	var ui := _get_feedback_ui()
+	if ui == null:
+		return
+	if ui.has_method("update_carry_display"):
+		ui.update_carry_display(item_type)
+	if ui.has_method("update_inventory_display"):
+		ui.update_inventory_display(item_type)
+
+
+func _get_feedback_ui() -> Node:
+	return get_tree().get_first_node_in_group("player_feedback_ui")
 
 
 func on_caught_by_enemy() -> void:
@@ -136,7 +162,8 @@ func drop_item() -> void:
 	inventory.clear()
 	nearby_pickup = null
 	print("Dropped: ", dropped_type)
-	_update_carry_hud()
+	show_notification("Dropped %s" % dropped_type)
+	_sync_inventory_feedback()
 	_spawn_dropped_pickup(dropped_type)
 
 
@@ -308,6 +335,7 @@ func _try_pickup() -> void:
 
 	if not can_pick_up():
 		print("Inventory full")
+		show_notification("Inventory full")
 		return
 
 	var item_type := "Unknown"

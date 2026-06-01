@@ -98,28 +98,35 @@ func interact(player: Node) -> void:
 	if player.has_method("has_carried_item") and player.has_carried_item("Potion"):
 		if player.consume_carried_item("Potion"):
 			_apply_heal()
+			_notify(player, "Tree healed!")
 			print("Tree healed from carried Potion")
 		else:
-			print("Need Potion to heal this tree")
+			_notify(player, "Need Potion to heal this tree")
 		return
 
 	if player.has_method("has_carried_item") and player.has_carried_item("Herb"):
-		print("Need Potion to heal this tree")
+		_notify(player, "Need Potion to heal this tree")
 		return
 
 	if player.is_carrying:
-		print("Need Potion to heal this tree")
+		_notify(player, "Need Potion to heal this tree")
 		return
 
 	var dropped_potion := _find_dropped_potion_in_area()
 	if dropped_potion:
 		dropped_potion.queue_free()
 		_apply_heal()
+		_notify(player, "Tree healed!")
 		print("Tree consumed dropped Potion")
 		print("Tree healed")
 		return
 
-	print("Need Potion to heal this tree")
+	_notify(player, "Need Potion to heal this tree")
+
+
+func _notify(player: Node, message: String) -> void:
+	if player.has_method("show_notification"):
+		player.show_notification(message)
 
 
 func _apply_heal() -> void:

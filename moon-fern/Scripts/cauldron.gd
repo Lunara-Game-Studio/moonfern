@@ -19,7 +19,7 @@ func _ready() -> void:
 
 func interact(player: Node) -> void:
 	if not player.has_method("has_carried_item"):
-		print("Need Herb to brew")
+		_notify(player, "Need Herb to brew")
 		return
 
 	if player.has_carried_item("Potion"):
@@ -29,29 +29,41 @@ func interact(player: Node) -> void:
 	if player.has_carried_item("Herb"):
 		if player.consume_carried_item("Herb"):
 			player.replace_carried_item("Potion")
+			_on_potion_brewed(player)
 			print("Cauldron received carried Herb")
 			print("Brewed Potion from Herb")
 			print("Now carrying: Potion")
 		else:
-			print("Need Herb to brew")
+			_notify(player, "Need Herb to brew")
 		return
 
 	if player.is_carrying:
-		print("Need Herb to brew")
+		_notify(player, "Need Herb to brew")
 		return
 
 	var dropped_herb := _find_dropped_herb_in_area()
 	if dropped_herb:
 		dropped_herb.queue_free()
 		if player.has_method("give_brewed_item") and player.give_brewed_item("Potion"):
+			_on_potion_brewed(player)
 			print("Cauldron consumed dropped Herb")
 			print("Brewed Potion from dropped Herb")
 			print("Now carrying: Potion")
 		else:
-			print("Need Herb to brew")
+			_notify(player, "Need Herb to brew")
 		return
 
-	print("Need Herb to brew")
+	_notify(player, "Need Herb to brew")
+
+
+func _on_potion_brewed(player: Node) -> void:
+	_notify(player, "Potion brewed!")
+	_notify(player, "Potion added to inventory")
+
+
+func _notify(player: Node, message: String) -> void:
+	if player.has_method("show_notification"):
+		player.show_notification(message)
 
 
 func _get_interact_bounds() -> Rect2:
