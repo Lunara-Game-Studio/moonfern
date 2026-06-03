@@ -8,16 +8,16 @@ The design aims to incorporate those structures to the environment of the game. 
 
 1. Swamp
 
-Enemies that step into it start drowning, and eventually die after being fully submerged.
+Enemies that step into it start drowning, and eventually die after being fully submerged. [also damages Nyra]
 
 2. Deadly vines
 
-3 seconds after Nyra runs underneath, the vines fall on the enemies, wrapping around their bodies and eventually choking them to death.
+1 seconds after Nyra runs underneath, the vines fall on the enemies, wrapping around their bodies and eventually choking them to death. [also damages Nyra]
 
 3. Vine jump
 
 Nyra can grab hanging vines and swing across large gaps, launching herself forward with momentum to reach distant platforms or hidden areas. Enemies are left behind.
 
-4. Poisonous flower
+4. Poisonous flowers
 
-Immediately after Nyra runs through, the flowers release toxic gas. Enemies are poisoned and die.
+Immediately after Nyra runs through, the flowers release toxic gas. Enemies are poisoned and die. [also damages Nyra]
