@@ -1,17 +1,18 @@
-[gd_scene format=4 uid="uid://sl2fl5bw2wlb"]
+[gd_scene format=3 uid="uid://sl2fl5bw2wlb"]
 
 [ext_resource type="Texture2D" uid="uid://ddsu2cqsqo4yx" path="res://Sprites/working_assets.png" id="1_qxrlw"]
 [ext_resource type="Script" uid="uid://dijof527jbsms" path="res://Scripts/the_witch.gd" id="1_wrm1d"]
 [ext_resource type="Texture2D" uid="uid://btjogwkquka4l" path="res://Sprites/cauldron.png" id="2_qxrlw"]
+[ext_resource type="PackedScene" uid="uid://bxc5skjaairf6" path="res://Scenes/forest_1.tscn" id="2_rfjv2"]
 [ext_resource type="Script" uid="uid://i66jj27o3w4f" path="res://Scripts/herb.gd" id="5_wowpa"]
-[ext_resource type="Script" path="res://Scripts/cauldron.gd" id="6_cauld"]
-[ext_resource type="Script" path="res://Scripts/healing_tree.gd" id="7_htree"]
+[ext_resource type="Script" uid="uid://dkb85m26uspwr" path="res://Scripts/cauldron.gd" id="6_cauld"]
+[ext_resource type="Script" uid="uid://byw7rwllw2jbf" path="res://Scripts/healing_tree.gd" id="7_htree"]
 [ext_resource type="PackedScene" uid="uid://bi53qefaxicd1" path="res://Scenes/enemy_robot.tscn" id="8_enemy"]
-[ext_resource type="Script" path="res://Scripts/corruption_feedback.gd" id="9_cfb"]
-[ext_resource type="Script" path="res://Scripts/tree_corruption_hud.gd" id="10_hud"]
-[ext_resource type="Script" path="res://Scripts/player_feedback_ui.gd" id="11_feedback"]
-[ext_resource type="Script" path="res://Scripts/forest_shield_manager.gd" id="12_fshield"]
-[ext_resource type="Script" path="res://Scripts/forest_shield_hud.gd" id="13_fshud"]
+[ext_resource type="Script" uid="uid://biqmxheisbid8" path="res://Scripts/corruption_feedback.gd" id="9_cfb"]
+[ext_resource type="Script" uid="uid://bircjt5xoe0vt" path="res://Scripts/tree_corruption_hud.gd" id="10_hud"]
+[ext_resource type="Script" uid="uid://ddmu1ylpecqbo" path="res://Scripts/player_feedback_ui.gd" id="11_feedback"]
+[ext_resource type="Script" uid="uid://7htady161uy7" path="res://Scripts/forest_shield_manager.gd" id="12_fshield"]
+[ext_resource type="Script" uid="uid://blbc4y73de3x8" path="res://Scripts/forest_shield_hud.gd" id="13_fshud"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3dryh"]
 radius = 16.03122
@@ -19,237 +20,8 @@ radius = 16.03122
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wowpa"]
 size = Vector2(43, 58.5)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i6g32"]
-texture = ExtResource("1_qxrlw")
-10:17/0 = 0
-11:17/0 = 0
-27:17/0 = 0
-28:17/0 = 0
-29:17/0 = 0
-30:17/0 = 0
-32:17/0 = 0
-33:17/0 = 0
-34:17/0 = 0
-35:17/0 = 0
-4:18/0 = 0
-5:18/0 = 0
-10:18/0 = 0
-11:18/0 = 0
-27:18/0 = 0
-28:18/0 = 0
-29:18/0 = 0
-30:18/0 = 0
-32:18/0 = 0
-33:18/0 = 0
-34:18/0 = 0
-35:18/0 = 0
-4:19/0 = 0
-5:19/0 = 0
-6:19/0 = 0
-10:19/0 = 0
-11:19/0 = 0
-17:19/0 = 0
-18:19/0 = 0
-19:19/0 = 0
-20:19/0 = 0
-27:19/0 = 0
-28:19/0 = 0
-29:19/0 = 0
-30:19/0 = 0
-32:19/0 = 0
-33:19/0 = 0
-34:19/0 = 0
-35:19/0 = 0
-4:20/0 = 0
-5:20/0 = 0
-6:20/0 = 0
-10:20/0 = 0
-11:20/0 = 0
-17:20/0 = 0
-18:20/0 = 0
-19:20/0 = 0
-20:20/0 = 0
-27:20/0 = 0
-28:20/0 = 0
-29:20/0 = 0
-30:20/0 = 0
-32:20/0 = 0
-33:20/0 = 0
-34:20/0 = 0
-35:20/0 = 0
-4:21/0 = 0
-5:21/0 = 0
-6:21/0 = 0
-17:21/0 = 0
-18:21/0 = 0
-19:21/0 = 0
-20:21/0 = 0
-8:24/0 = 0
-9:24/0 = 0
-10:24/0 = 0
-11:24/0 = 0
-12:24/0 = 0
-13:24/0 = 0
-3:28/0 = 0
-4:28/0 = 0
-4:28/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-5:28/0 = 0
-5:28/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-6:28/0 = 0
-6:28/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-7:28/0 = 0
-7:28/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-8:28/0 = 0
-8:28/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-9:28/0 = 0
-9:28/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-10:28/0 = 0
-10:28/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-11:28/0 = 0
-11:28/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-12:28/0 = 0
-3:29/0 = 0
-4:29/0 = 0
-4:29/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-5:29/0 = 0
-5:29/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-6:29/0 = 0
-6:29/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-7:29/0 = 0
-7:29/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-8:29/0 = 0
-8:29/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-9:29/0 = 0
-9:29/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-10:29/0 = 0
-10:29/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-11:29/0 = 0
-11:29/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-12:29/0 = 0
-3:30/0 = 0
-4:30/0 = 0
-5:30/0 = 0
-6:30/0 = 0
-7:30/0 = 0
-8:30/0 = 0
-9:30/0 = 0
-10:30/0 = 0
-11:30/0 = 0
-12:30/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_1l0tm"]
-physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_i6g32")
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v158k"]
-texture = ExtResource("1_qxrlw")
-10:17/0 = 0
-11:17/0 = 0
-27:17/0 = 0
-28:17/0 = 0
-29:17/0 = 0
-30:17/0 = 0
-32:17/0 = 0
-33:17/0 = 0
-34:17/0 = 0
-35:17/0 = 0
-4:18/0 = 0
-5:18/0 = 0
-10:18/0 = 0
-11:18/0 = 0
-27:18/0 = 0
-28:18/0 = 0
-29:18/0 = 0
-30:18/0 = 0
-32:18/0 = 0
-33:18/0 = 0
-34:18/0 = 0
-35:18/0 = 0
-4:19/0 = 0
-5:19/0 = 0
-6:19/0 = 0
-10:19/0 = 0
-11:19/0 = 0
-17:19/0 = 0
-18:19/0 = 0
-19:19/0 = 0
-20:19/0 = 0
-27:19/0 = 0
-28:19/0 = 0
-29:19/0 = 0
-30:19/0 = 0
-32:19/0 = 0
-33:19/0 = 0
-34:19/0 = 0
-35:19/0 = 0
-4:20/0 = 0
-5:20/0 = 0
-6:20/0 = 0
-10:20/0 = 0
-11:20/0 = 0
-17:20/0 = 0
-18:20/0 = 0
-19:20/0 = 0
-20:20/0 = 0
-27:20/0 = 0
-28:20/0 = 0
-29:20/0 = 0
-30:20/0 = 0
-32:20/0 = 0
-33:20/0 = 0
-34:20/0 = 0
-35:20/0 = 0
-4:21/0 = 0
-5:21/0 = 0
-6:21/0 = 0
-17:21/0 = 0
-18:21/0 = 0
-19:21/0 = 0
-20:21/0 = 0
-8:24/0 = 0
-9:24/0 = 0
-9:24/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -6.0263634, 8, -5.970826, 8, 8, -8, 8)
-10:24/0 = 0
-10:24/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -6.0263634, 8, -5.970826, 8, 8, -8, 8)
-11:24/0 = 0
-11:24/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -6.0263634, 8, -5.970826, 8, 8, -8, 8)
-12:24/0 = 0
-12:24/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -6.0263634, 8, -5.970826, 8, 8, -8, 8)
-13:24/0 = 0
-3:28/0 = 0
-4:28/0 = 0
-5:28/0 = 0
-6:28/0 = 0
-7:28/0 = 0
-8:28/0 = 0
-9:28/0 = 0
-10:28/0 = 0
-11:28/0 = 0
-12:28/0 = 0
-3:29/0 = 0
-4:29/0 = 0
-5:29/0 = 0
-6:29/0 = 0
-7:29/0 = 0
-8:29/0 = 0
-9:29/0 = 0
-10:29/0 = 0
-11:29/0 = 0
-12:29/0 = 0
-3:30/0 = 0
-4:30/0 = 0
-5:30/0 = 0
-6:30/0 = 0
-7:30/0 = 0
-8:30/0 = 0
-9:30/0 = 0
-10:30/0 = 0
-11:30/0 = 0
-12:30/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_h4fw4"]
-physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_v158k")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tree_interact"]
+size = Vector2(120, 110)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ldgsr"]
 size = Vector2(64, 65)
@@ -257,25 +29,22 @@ size = Vector2(64, 65)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o5yvi"]
 size = Vector2(65, 65)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cauldron_interact"]
+size = Vector2(120, 90)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wrm1d"]
 size = Vector2(54, 41)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3dryh"]
-size = Vector2(22, 27)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i6g32"]
 size = Vector2(21, 27)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tree_interact"]
-size = Vector2(120, 110)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cauldron_interact"]
-size = Vector2(120, 90)
-
 [node name="Game" type="Node2D" unique_id=623895467]
 script = ExtResource("9_cfb")
 
-[node name="ForestShieldManager" type="Node" parent="."]
+[node name="Forest" parent="." unique_id=824735648 instance=ExtResource("2_rfjv2")]
+position = Vector2(-546, -698)
+
+[node name="ForestShieldManager" type="Node" parent="." unique_id=989220108]
 script = ExtResource("12_fshield")
 
 [node name="TheWitch" type="CharacterBody2D" parent="." unique_id=1722578828]
@@ -300,41 +69,28 @@ position = Vector2(209, 312)
 position = Vector2(230, 546)
 shape = SubResource("RectangleShape2D_wowpa")
 
-[node name="Floor" type="TileMapLayer" parent="." unique_id=1746608159]
-position = Vector2(78, 0)
-tile_map_data = PackedByteArray("AAAAACYAAAAEABwAAAAAACcAAAAEAB0AAAABACYAAAAFABwAAAABACcAAAAFAB0AAAACACYAAAAGABwAAAACACcAAAAGAB0AAAADACYAAAAHABwAAAADACcAAAAHAB0AAAAEACYAAAAIABwAAAAEACcAAAAIAB0AAAAFACYAAAAJABwAAAAFACcAAAAJAB0AAAAGACYAAAAKABwAAAAGACcAAAAKAB0AAAAHACYAAAALABwAAAAHACcAAAALAB0AAAAAACQAAAAEABwAAAAAACUAAAAEAB0AAAABACQAAAAFABwAAAABACUAAAAFAB0AAAACACQAAAAGABwAAAACACUAAAAGAB0AAAADACQAAAAHABwAAAADACUAAAAHAB0AAAAEACQAAAAIABwAAAAEACUAAAAIAB0AAAAFACQAAAAJABwAAAAFACUAAAAJAB0AAAAGACQAAAAKABwAAAAGACUAAAAKAB0AAAAHACQAAAALABwAAAAHACUAAAALAB0AAAAIACQAAAAEABwAAAAIACUAAAAEAB0AAAAJACQAAAAFABwAAAAJACUAAAAFAB0AAAAKACQAAAAGABwAAAAKACUAAAAGAB0AAAALACQAAAAHABwAAAALACUAAAAHAB0AAAAMACQAAAAIABwAAAAMACUAAAAIAB0AAAANACQAAAAJABwAAAANACUAAAAJAB0AAAAOACQAAAAKABwAAAAOACUAAAAKAB0AAAAPACQAAAALABwAAAAPACUAAAALAB0AAAAIACYAAAAEABwAAAAIACcAAAAEAB0AAAAJACYAAAAFABwAAAAJACcAAAAFAB0AAAAKACYAAAAGABwAAAAKACcAAAAGAB0AAAALACYAAAAHABwAAAALACcAAAAHAB0AAAAMACYAAAAIABwAAAAMACcAAAAIAB0AAAANACYAAAAJABwAAAANACcAAAAJAB0AAAAOACYAAAAKABwAAAAOACcAAAAKAB0AAAAPACYAAAALABwAAAAPACcAAAALAB0AAAAQACQAAAAEABwAAAAQACUAAAAEAB0AAAARACQAAAAFABwAAAARACUAAAAFAB0AAAASACQAAAAGABwAAAASACUAAAAGAB0AAAATACQAAAAHABwAAAATACUAAAAHAB0AAAAUACQAAAAIABwAAAAUACUAAAAIAB0AAAAVACQAAAAJABwAAAAVACUAAAAJAB0AAAAWACQAAAAKABwAAAAWACUAAAAKAB0AAAAXACQAAAALABwAAAAXACUAAAALAB0AAAAQACYAAAAEABwAAAAQACcAAAAEAB0AAAARACYAAAAFABwAAAARACcAAAAFAB0AAAASACYAAAAGABwAAAASACcAAAAGAB0AAAATACYAAAAHABwAAAATACcAAAAHAB0AAAAUACYAAAAIABwAAAAUACcAAAAIAB0AAAAVACYAAAAJABwAAAAVACcAAAAJAB0AAAAWACYAAAAKABwAAAAWACcAAAAKAB0AAAAXACYAAAALABwAAAAXACcAAAALAB0AAAAYACQAAAAEABwAAAAYACUAAAAEAB0AAAAZACQAAAAFABwAAAAZACUAAAAFAB0AAAAaACQAAAAGABwAAAAaACUAAAAGAB0AAAAbACQAAAAHABwAAAAbACUAAAAHAB0AAAAcACQAAAAIABwAAAAcACUAAAAIAB0AAAAdACQAAAAJABwAAAAdACUAAAAJAB0AAAAeACQAAAAKABwAAAAeACUAAAAKAB0AAAAfACQAAAALABwAAAAfACUAAAALAB0AAAAYACYAAAAEABwAAAAYACcAAAAEAB0AAAAZACYAAAAFABwAAAAZACcAAAAFAB0AAAAaACYAAAAGABwAAAAaACcAAAAGAB0AAAAbACYAAAAHABwAAAAbACcAAAAHAB0AAAAcACYAAAAIABwAAAAcACcAAAAIAB0AAAAdACYAAAAJABwAAAAdACcAAAAJAB0AAAAeACYAAAAKABwAAAAeACcAAAAKAB0AAAAfACYAAAALABwAAAAfACcAAAALAB0AAAAgACQAAAAEABwAAAAgACUAAAAEAB0AAAAhACQAAAAFABwAAAAhACUAAAAFAB0AAAAiACQAAAAGABwAAAAiACUAAAAGAB0AAAAjACQAAAAHABwAAAAjACUAAAAHAB0AAAAkACQAAAAIABwAAAAkACUAAAAIAB0AAAAlACQAAAAJABwAAAAlACUAAAAJAB0AAAAmACQAAAAKABwAAAAmACUAAAAKAB0AAAAnACQAAAALABwAAAAnACUAAAALAB0AAAAgACYAAAAEABwAAAAgACcAAAAEAB0AAAAhACYAAAAFABwAAAAhACcAAAAFAB0AAAAiACYAAAAGABwAAAAiACcAAAAGAB0AAAAjACYAAAAHABwAAAAjACcAAAAHAB0AAAAkACYAAAAIABwAAAAkACcAAAAIAB0AAAAlACYAAAAJABwAAAAlACcAAAAJAB0AAAAmACYAAAAKABwAAAAmACcAAAAKAB0AAAAnACYAAAALABwAAAAnACcAAAALAB0AAAAoACQAAAAEABwAAAAoACUAAAAEAB0AAAApACQAAAAFABwAAAApACUAAAAFAB0AAAAqACQAAAAGABwAAAAqACUAAAAGAB0AAAArACQAAAAHABwAAAArACUAAAAHAB0AAAAsACQAAAAIABwAAAAsACUAAAAIAB0AAAAtACQAAAAJABwAAAAtACUAAAAJAB0AAAAuACQAAAAKABwAAAAuACUAAAAKAB0AAAAvACQAAAALABwAAAAvACUAAAALAB0AAAAoACYAAAAEABwAAAAoACcAAAAEAB0AAAApACYAAAAFABwAAAApACcAAAAFAB0AAAAqACYAAAAGABwAAAAqACcAAAAGAB0AAAArACYAAAAHABwAAAArACcAAAAHAB0AAAAsACYAAAAIABwAAAAsACcAAAAIAB0AAAAtACYAAAAJABwAAAAtACcAAAAJAB0AAAAuACYAAAAKABwAAAAuACcAAAAKAB0AAAAvACYAAAALABwAAAAvACcAAAALAB0AAAAwACQAAAAEABwAAAAwACUAAAAEAB0AAAAxACQAAAAFABwAAAAxACUAAAAFAB0AAAAyACQAAAAGABwAAAAyACUAAAAGAB0AAAAzACQAAAAHABwAAAAzACUAAAAHAB0AAAA0ACQAAAAIABwAAAA0ACUAAAAIAB0AAAA1ACQAAAAJABwAAAA1ACUAAAAJAB0AAAA2ACQAAAAKABwAAAA2ACUAAAAKAB0AAAAwACYAAAAEABwAAAAwACcAAAAEAB0AAAAxACYAAAAFABwAAAAxACcAAAAFAB0AAAAyACYAAAAGABwAAAAyACcAAAAGAB0AAAAzACYAAAAHABwAAAAzACcAAAAHAB0AAAA0ACYAAAAIABwAAAA0ACcAAAAIAB0AAAA1ACYAAAAJABwAAAA1ACcAAAAJAB0AAAA2ACYAAAAKABwAAAA2ACcAAAAKAB0AAAA3ACQAAAAEABwAAAA3ACUAAAAEAB0AAAA4ACQAAAAFABwAAAA4ACUAAAAFAB0AAAA5ACQAAAAGABwAAAA5ACUAAAAGAB0AAAA6ACQAAAAHABwAAAA6ACUAAAAHAB0AAAA7ACQAAAAIABwAAAA7ACUAAAAIAB0AAAA8ACQAAAAJABwAAAA8ACUAAAAJAB0AAAA9ACQAAAAKABwAAAA9ACUAAAAKAB0AAAA+ACQAAAALABwAAAA+ACUAAAALAB0AAAA3ACYAAAAEABwAAAA3ACcAAAAEAB0AAAA4ACYAAAAFABwAAAA4ACcAAAAFAB0AAAA5ACYAAAAGABwAAAA5ACcAAAAGAB0AAAA6ACYAAAAHABwAAAA6ACcAAAAHAB0AAAA7ACYAAAAIABwAAAA7ACcAAAAIAB0AAAA8ACYAAAAJABwAAAA8ACcAAAAJAB0AAAA9ACYAAAAKABwAAAA9ACcAAAAKAB0AAAA+ACYAAAALABwAAAA+ACcAAAALAB0AAAA/ACQAAAAEABwAAAA/ACUAAAAEAB0AAABAACQAAAAFABwAAABAACUAAAAFAB0AAABBACQAAAAGABwAAABBACUAAAAGAB0AAABCACQAAAAHABwAAABCACUAAAAHAB0AAABDACQAAAAIABwAAABDACUAAAAIAB0AAABEACQAAAAJABwAAABEACUAAAAJAB0AAABFACQAAAAKABwAAABFACUAAAAKAB0AAABGACQAAAALABwAAABGACUAAAALAB0AAAA/ACYAAAAEABwAAAA/ACcAAAAEAB0AAABAACYAAAAFABwAAABAACcAAAAFAB0AAABBACYAAAAGABwAAABBACcAAAAGAB0AAABCACYAAAAHABwAAABCACcAAAAHAB0AAABDACYAAAAIABwAAABDACcAAAAIAB0AAABEACYAAAAJABwAAABEACcAAAAJAB0AAABFACYAAAAKABwAAABFACcAAAAKAB0AAABGACYAAAALABwAAABGACcAAAALAB0AAABHACQAAAAEABwAAABHACUAAAAEAB0AAABIACQAAAAFABwAAABIACUAAAAFAB0AAABJACQAAAAGABwAAABJACUAAAAGAB0AAABKACQAAAAHABwAAABKACUAAAAHAB0AAABLACQAAAAIABwAAABLACUAAAAIAB0AAABMACQAAAAJABwAAABMACUAAAAJAB0AAABNACQAAAAKABwAAABNACUAAAAKAB0AAABOACQAAAALABwAAABOACUAAAALAB0AAABHACYAAAAEABwAAABHACcAAAAEAB0AAABIACYAAAAFABwAAABIACcAAAAFAB0AAABJACYAAAAGABwAAABJACcAAAAGAB0AAABKACYAAAAHABwAAABKACcAAAAHAB0AAABLACYAAAAIABwAAABLACcAAAAIAB0AAABMACYAAAAJABwAAABMACcAAAAJAB0AAABNACYAAAAKABwAAABNACcAAAAKAB0AAABOACYAAAALABwAAABOACcAAAALAB0AAABPACQAAAAEABwAAABPACUAAAAEAB0AAABQACQAAAAFABwAAABQACUAAAAFAB0AAABRACQAAAAGABwAAABRACUAAAAGAB0AAABSACQAAAAHABwAAABSACUAAAAHAB0AAABPACYAAAAEABwAAABPACcAAAAEAB0AAABQACYAAAAFABwAAABQACcAAAAFAB0AAABRACYAAAAGABwAAABRACcAAAAGAB0AAABSACYAAAAHABwAAABSACcAAAAHAB0AAADp/yQAAAAFABwAAADp/yUAAAAFAB0AAADq/yQAAAAGABwAAADq/yUAAAAGAB0AAADr/yQAAAAHABwAAADr/yUAAAAHAB0AAADs/yQAAAAIABwAAADs/yUAAAAIAB0AAADt/yQAAAAJABwAAADt/yUAAAAJAB0AAADu/yQAAAAKABwAAADu/yUAAAAKAB0AAADv/yQAAAALABwAAADv/yUAAAALAB0AAADp/yYAAAAFABwAAADp/ycAAAAFAB0AAADq/yYAAAAGABwAAADq/ycAAAAGAB0AAADr/yYAAAAHABwAAADr/ycAAAAHAB0AAADs/yYAAAAIABwAAADs/ycAAAAIAB0AAADt/yYAAAAJABwAAADt/ycAAAAJAB0AAADu/yYAAAAKABwAAADu/ycAAAAKAB0AAADv/yYAAAALABwAAADv/ycAAAALAB0AAADw/yQAAAAEABwAAADw/yUAAAAEAB0AAADx/yQAAAAFABwAAADx/yUAAAAFAB0AAADy/yQAAAAGABwAAADy/yUAAAAGAB0AAADz/yQAAAAHABwAAADz/yUAAAAHAB0AAAD0/yQAAAAIABwAAAD0/yUAAAAIAB0AAAD1/yQAAAAJABwAAAD1/yUAAAAJAB0AAAD2/yQAAAAKABwAAAD2/yUAAAAKAB0AAAD3/yQAAAALABwAAAD3/yUAAAALAB0AAADw/yYAAAAEABwAAADw/ycAAAAEAB0AAADx/yYAAAAFABwAAADx/ycAAAAFAB0AAADy/yYAAAAGABwAAADy/ycAAAAGAB0AAADz/yYAAAAHABwAAADz/ycAAAAHAB0AAAD0/yYAAAAIABwAAAD0/ycAAAAIAB0AAAD1/yYAAAAJABwAAAD1/ycAAAAJAB0AAAD2/yYAAAAKABwAAAD2/ycAAAAKAB0AAAD3/yYAAAALABwAAAD3/ycAAAALAB0AAAD4/yQAAAAEABwAAAD4/yUAAAAEAB0AAAD5/yQAAAAFABwAAAD5/yUAAAAFAB0AAAD6/yQAAAAGABwAAAD6/yUAAAAGAB0AAAD7/yQAAAAHABwAAAD7/yUAAAAHAB0AAAD8/yQAAAAIABwAAAD8/yUAAAAIAB0AAAD9/yQAAAAJABwAAAD9/yUAAAAJAB0AAAD+/yQAAAAKABwAAAD+/yUAAAAKAB0AAAD//yQAAAALABwAAAD//yUAAAALAB0AAAD4/yYAAAAEABwAAAD4/ycAAAAEAB0AAAD5/yYAAAAFABwAAAD5/ycAAAAFAB0AAAD6/yYAAAAGABwAAAD6/ycAAAAGAB0AAAD7/yYAAAAHABwAAAD7/ycAAAAHAB0AAAD8/yYAAAAIABwAAAD8/ycAAAAIAB0AAAD9/yYAAAAJABwAAAD9/ycAAAAJAB0AAAD+/yYAAAAKABwAAAD+/ycAAAAKAB0AAAD//yYAAAALABwAAAD//ycAAAALAB0AAACz/yQAAAAGABwAAACz/yUAAAAGAB0AAAC0/yQAAAAHABwAAAC0/yUAAAAHAB0AAAC1/yQAAAAIABwAAAC1/yUAAAAIAB0AAAC2/yQAAAAJABwAAAC2/yUAAAAJAB0AAAC3/yQAAAAKABwAAAC3/yUAAAAKAB0AAAC4/yQAAAALABwAAAC4/yUAAAALAB0AAACz/yYAAAAGABwAAACz/ycAAAAGAB0AAAC0/yYAAAAHABwAAAC0/ycAAAAHAB0AAAC1/yYAAAAIABwAAAC1/ycAAAAIAB0AAAC2/yYAAAAJABwAAAC2/ycAAAAJAB0AAAC3/yYAAAAKABwAAAC3/ycAAAAKAB0AAAC4/yYAAAALABwAAAC4/ycAAAALAB0AAAC5/yQAAAAEABwAAAC5/yUAAAAEAB0AAAC6/yQAAAAFABwAAAC6/yUAAAAFAB0AAAC7/yQAAAAGABwAAAC7/yUAAAAGAB0AAAC8/yQAAAAHABwAAAC8/yUAAAAHAB0AAAC9/yQAAAAIABwAAAC9/yUAAAAIAB0AAAC+/yQAAAAJABwAAAC+/yUAAAAJAB0AAAC//yQAAAAKABwAAAC//yUAAAAKAB0AAADA/yQAAAALABwAAADA/yUAAAALAB0AAAC5/yYAAAAEABwAAAC5/ycAAAAEAB0AAAC6/yYAAAAFABwAAAC6/ycAAAAFAB0AAAC7/yYAAAAGABwAAAC7/ycAAAAGAB0AAAC8/yYAAAAHABwAAAC8/ycAAAAHAB0AAAC9/yYAAAAIABwAAAC9/ycAAAAIAB0AAAC+/yYAAAAJABwAAAC+/ycAAAAJAB0AAAC//yYAAAAKABwAAAC//ycAAAAKAB0AAADA/yYAAAALABwAAADA/ycAAAALAB0AAADB/yQAAAAEABwAAADB/yUAAAAEAB0AAADC/yQAAAAFABwAAADC/yUAAAAFAB0AAADD/yQAAAAGABwAAADD/yUAAAAGAB0AAADE/yQAAAAHABwAAADE/yUAAAAHAB0AAADF/yQAAAAIABwAAADF/yUAAAAIAB0AAADG/yQAAAAJABwAAADG/yUAAAAJAB0AAADH/yQAAAAKABwAAADH/yUAAAAKAB0AAADI/yQAAAALABwAAADI/yUAAAALAB0AAADB/yYAAAAEABwAAADB/ycAAAAEAB0AAADC/yYAAAAFABwAAADC/ycAAAAFAB0AAADD/yYAAAAGABwAAADD/ycAAAAGAB0AAADE/yYAAAAHABwAAADE/ycAAAAHAB0AAADF/yYAAAAIABwAAADF/ycAAAAIAB0AAADG/yYAAAAJABwAAADG/ycAAAAJAB0AAADH/yYAAAAKABwAAADH/ycAAAAKAB0AAADI/yYAAAALABwAAADI/ycAAAALAB0AAADJ/yQAAAAEABwAAADJ/yUAAAAEAB0AAADK/yQAAAAFABwAAADK/yUAAAAFAB0AAADL/yQAAAAGABwAAADL/yUAAAAGAB0AAADM/yQAAAAHABwAAADM/yUAAAAHAB0AAADN/yQAAAAIABwAAADN/yUAAAAIAB0AAADO/yQAAAAJABwAAADO/yUAAAAJAB0AAADP/yQAAAAKABwAAADP/yUAAAAKAB0AAADQ/yQAAAALABwAAADQ/yUAAAALAB0AAADJ/yYAAAAEABwAAADJ/ycAAAAEAB0AAADK/yYAAAAFABwAAADK/ycAAAAFAB0AAADL/yYAAAAGABwAAADL/ycAAAAGAB0AAADM/yYAAAAHABwAAADM/ycAAAAHAB0AAADN/yYAAAAIABwAAADN/ycAAAAIAB0AAADO/yYAAAAJABwAAADO/ycAAAAJAB0AAADP/yYAAAAKABwAAADP/ycAAAAKAB0AAADQ/yYAAAALABwAAADQ/ycAAAALAB0AAADR/yQAAAAEABwAAADR/yUAAAAEAB0AAADS/yQAAAAFABwAAADS/yUAAAAFAB0AAADT/yQAAAAGABwAAADT/yUAAAAGAB0AAADU/yQAAAAHABwAAADU/yUAAAAHAB0AAADV/yQAAAAIABwAAADV/yUAAAAIAB0AAADW/yQAAAAJABwAAADW/yUAAAAJAB0AAADX/yQAAAAKABwAAADX/yUAAAAKAB0AAADY/yQAAAALABwAAADY/yUAAAALAB0AAADR/yYAAAAEABwAAADR/ycAAAAEAB0AAADS/yYAAAAFABwAAADS/ycAAAAFAB0AAADT/yYAAAAGABwAAADT/ycAAAAGAB0AAADU/yYAAAAHABwAAADU/ycAAAAHAB0AAADV/yYAAAAIABwAAADV/ycAAAAIAB0AAADW/yYAAAAJABwAAADW/ycAAAAJAB0AAADX/yYAAAAKABwAAADX/ycAAAAKAB0AAADY/yYAAAALABwAAADY/ycAAAALAB0AAADZ/yQAAAAEABwAAADZ/yUAAAAEAB0AAADa/yQAAAAFABwAAADa/yUAAAAFAB0AAADb/yQAAAAGABwAAADb/yUAAAAGAB0AAADc/yQAAAAHABwAAADc/yUAAAAHAB0AAADd/yQAAAAIABwAAADd/yUAAAAIAB0AAADe/yQAAAAJABwAAADe/yUAAAAJAB0AAADf/yQAAAAKABwAAADf/yUAAAAKAB0AAADg/yQAAAALABwAAADg/yUAAAALAB0AAADZ/yYAAAAEABwAAADZ/ycAAAAEAB0AAADa/yYAAAAFABwAAADa/ycAAAAFAB0AAADb/yYAAAAGABwAAADb/ycAAAAGAB0AAADc/yYAAAAHABwAAADc/ycAAAAHAB0AAADd/yYAAAAIABwAAADd/ycAAAAIAB0AAADe/yYAAAAJABwAAADe/ycAAAAJAB0AAADf/yYAAAAKABwAAADf/ycAAAAKAB0AAADg/yYAAAALABwAAADg/ycAAAALAB0AAADh/yQAAAAEABwAAADh/yUAAAAEAB0AAADi/yQAAAAFABwAAADi/yUAAAAFAB0AAADj/yQAAAAGABwAAADj/yUAAAAGAB0AAADk/yQAAAAHABwAAADk/yUAAAAHAB0AAADl/yQAAAAIABwAAADl/yUAAAAIAB0AAADm/yQAAAAJABwAAADm/yUAAAAJAB0AAADn/yQAAAAKABwAAADn/yUAAAAKAB0AAADo/yQAAAALABwAAADo/yUAAAALAB0AAADh/yYAAAAEABwAAADh/ycAAAAEAB0AAADi/yYAAAAFABwAAADi/ycAAAAFAB0AAADj/yYAAAAGABwAAADj/ycAAAAGAB0AAADk/yYAAAAHABwAAADk/ycAAAAHAB0AAADl/yYAAAAIABwAAADl/ycAAAAIAB0AAADm/yYAAAAJABwAAADm/ycAAAAJAB0AAADn/yYAAAAKABwAAADn/ycAAAAKAB0AAADo/yYAAAALABwAAADo/ycAAAALAB0AAABTACQAAAAEABwAAABTACUAAAAEAB0AAABUACQAAAAFABwAAABUACUAAAAFAB0AAABVACQAAAAGABwAAABVACUAAAAGAB0AAABWACQAAAAHABwAAABWACUAAAAHAB0AAABXACQAAAAIABwAAABXACUAAAAIAB0AAABYACQAAAAJABwAAABYACUAAAAJAB0AAABZACQAAAAKABwAAABZACUAAAAKAB0AAABaACQAAAALABwAAABaACUAAAALAB0AAABTACYAAAAEABwAAABTACcAAAAEAB0AAABUACYAAAAFABwAAABUACcAAAAFAB0AAABVACYAAAAGABwAAABVACcAAAAGAB0AAABWACYAAAAHABwAAABWACcAAAAHAB0AAABXACYAAAAIABwAAABXACcAAAAIAB0AAABYACYAAAAJABwAAABYACcAAAAJAB0AAABZACYAAAAKABwAAABZACcAAAAKAB0AAABaACYAAAALABwAAABaACcAAAALAB0AAABbACQAAAAEABwAAABbACUAAAAEAB0AAABcACQAAAAFABwAAABcACUAAAAFAB0AAABdACQAAAAGABwAAABdACUAAAAGAB0AAABeACQAAAAHABwAAABeACUAAAAHAB0AAABfACQAAAAIABwAAABfACUAAAAIAB0AAABgACQAAAAJABwAAABgACUAAAAJAB0AAABhACQAAAAKABwAAABhACUAAAAKAB0AAABiACQAAAALABwAAABiACUAAAALAB0AAABbACYAAAAEABwAAABbACcAAAAEAB0AAABcACYAAAAFABwAAABcACcAAAAFAB0AAABdACYAAAAGABwAAABdACcAAAAGAB0AAABeACYAAAAHABwAAABeACcAAAAHAB0AAABfACYAAAAIABwAAABfACcAAAAIAB0AAABgACYAAAAJABwAAABgACcAAAAJAB0AAABhACYAAAAKABwAAABhACcAAAAKAB0AAABiACYAAAALABwAAABiACcAAAALAB0AAABjACQAAAAEABwAAABjACUAAAAEAB0AAABkACQAAAAFABwAAABkACUAAAAFAB0AAABlACQAAAAGABwAAABlACUAAAAGAB0AAABmACQAAAAHABwAAABmACUAAAAHAB0AAABnACQAAAAIABwAAABnACUAAAAIAB0AAABoACQAAAAJABwAAABoACUAAAAJAB0AAABpACQAAAAKABwAAABpACUAAAAKAB0AAABqACQAAAALABwAAABqACUAAAALAB0AAABjACYAAAAEABwAAABjACcAAAAEAB0AAABkACYAAAAFABwAAABkACcAAAAFAB0AAABlACYAAAAGABwAAABlACcAAAAGAB0AAABmACYAAAAHABwAAABmACcAAAAHAB0AAABnACYAAAAIABwAAABnACcAAAAIAB0AAABoACYAAAAJABwAAABoACcAAAAJAB0AAABpACYAAAAKABwAAABpACcAAAAKAB0AAABqACYAAAALABwAAABqACcAAAALAB0AAABrACQAAAAEABwAAABrACUAAAAEAB0AAABsACQAAAAFABwAAABsACUAAAAFAB0AAABtACQAAAAGABwAAABtACUAAAAGAB0AAABuACQAAAAHABwAAABuACUAAAAHAB0AAABvACQAAAAIABwAAABvACUAAAAIAB0AAABwACQAAAAJABwAAABwACUAAAAJAB0AAABxACQAAAAKABwAAABxACUAAAAKAB0AAAByACQAAAALABwAAAByACUAAAALAB0AAABrACYAAAAEABwAAABrACcAAAAEAB0AAABsACYAAAAFABwAAABsACcAAAAFAB0AAABtACYAAAAGABwAAABtACcAAAAGAB0AAABuACYAAAAHABwAAABuACcAAAAHAB0AAABvACYAAAAIABwAAABvACcAAAAIAB0AAABwACYAAAAJABwAAABwACcAAAAJAB0AAABxACYAAAAKABwAAABxACcAAAAKAB0AAAByACYAAAALABwAAAByACcAAAALAB0AAABzACQAAAAEABwAAABzACUAAAAEAB0AAAB0ACQAAAAFABwAAAB0ACUAAAAFAB0AAAB1ACQAAAAGABwAAAB1ACUAAAAGAB0AAAB2ACQAAAAHABwAAAB2ACUAAAAHAB0AAAB3ACQAAAAIABwAAAB3ACUAAAAIAB0AAAB4ACQAAAAJABwAAAB4ACUAAAAJAB0AAAB5ACQAAAAKABwAAAB5ACUAAAAKAB0AAAB6ACQAAAALABwAAAB6ACUAAAALAB0AAABzACYAAAAEABwAAABzACcAAAAEAB0AAAB0ACYAAAAFABwAAAB0ACcAAAAFAB0AAAB1ACYAAAAGABwAAAB1ACcAAAAGAB0AAAB2ACYAAAAHABwAAAB2ACcAAAAHAB0AAAB3ACYAAAAIABwAAAB3ACcAAAAIAB0AAAB4ACYAAAAJABwAAAB4ACcAAAAJAB0AAAB5ACYAAAAKABwAAAB5ACcAAAAKAB0AAAB6ACYAAAALABwAAAB6ACcAAAALAB0AAAB7ACQAAAAEABwAAAB7ACUAAAAEAB0AAAB8ACQAAAAFABwAAAB8ACUAAAAFAB0AAAB9ACQAAAAGABwAAAB9ACUAAAAGAB0AAAB+ACQAAAAHABwAAAB+ACUAAAAHAB0AAAB/ACQAAAAIABwAAAB/ACUAAAAIAB0AAACAACQAAAAJABwAAACAACUAAAAJAB0AAACBACQAAAAKABwAAACBACUAAAAKAB0AAACCACQAAAALABwAAACCACUAAAALAB0AAAB7ACYAAAAEABwAAAB7ACcAAAAEAB0AAAB8ACYAAAAFABwAAAB8ACcAAAAFAB0AAAB9ACYAAAAGABwAAAB9ACcAAAAGAB0AAAB+ACYAAAAHABwAAAB+ACcAAAAHAB0AAAB/ACYAAAAIABwAAAB/ACcAAAAIAB0AAACAACYAAAAJABwAAACAACcAAAAJAB0AAACBACYAAAAKABwAAACBACcAAAAKAB0AAACCACYAAAALABwAAACCACcAAAALAB0AAACDACQAAAAEABwAAACDACUAAAAEAB0AAACEACQAAAAFABwAAACEACUAAAAFAB0AAACFACQAAAAGABwAAACFACUAAAAGAB0AAACGACQAAAAHABwAAACGACUAAAAHAB0AAACHACQAAAAIABwAAACHACUAAAAIAB0AAACIACQAAAAJABwAAACIACUAAAAJAB0AAACJACQAAAAKABwAAACJACUAAAAKAB0AAACKACQAAAALABwAAACKACUAAAALAB0AAACDACYAAAAEABwAAACDACcAAAAEAB0AAACEACYAAAAFABwAAACEACcAAAAFAB0AAACFACYAAAAGABwAAACFACcAAAAGAB0AAACGACYAAAAHABwAAACGACcAAAAHAB0AAACHACYAAAAIABwAAACHACcAAAAIAB0AAACIACYAAAAJABwAAACIACcAAAAJAB0AAACJACYAAAAKABwAAACJACcAAAAKAB0AAACKACYAAAALABwAAACKACcAAAALAB0AAACLACQAAAAEABwAAACLACUAAAAEAB0AAACMACQAAAAFABwAAACMACUAAAAFAB0AAACNACQAAAAGABwAAACNACUAAAAGAB0AAACOACQAAAAHABwAAACOACUAAAAHAB0AAACPACQAAAAIABwAAACPACUAAAAIAB0AAACQACQAAAAJABwAAACQACUAAAAJAB0AAACRACQAAAAKABwAAACRACUAAAAKAB0AAACLACYAAAAEABwAAACLACcAAAAEAB0AAACMACYAAAAFABwAAACMACcAAAAFAB0AAACNACYAAAAGABwAAACNACcAAAAGAB0AAACOACYAAAAHABwAAACOACcAAAAHAB0AAACPACYAAAAIABwAAACPACcAAAAIAB0AAACQACYAAAAJABwAAACQACcAAAAJAB0AAACRACYAAAAKABwAAACRACcAAAAKAB0AAAA=")
-tile_set = SubResource("TileSet_1l0tm")
-
-[node name="Platforms" type="TileMapLayer" parent="." unique_id=519441280]
-position = Vector2(78, 0)
-tile_map_data = PackedByteArray("AAAJAB8AAAAMABgAAAD8/x8AAAAJABgAAAD9/x8AAAAKABgAAAD+/x8AAAALABgAAAD//x8AAAAJABgAAAAAAB8AAAAKABgAAAABAB8AAAALABgAAAACAB8AAAAKABgAAAADAB8AAAALABgAAAAEAB8AAAAJABgAAAAFAB8AAAAKABgAAAAGAB8AAAAJABgAAAAHAB8AAAAKABgAAAAIAB8AAAALABgAAADZ/x8AAAAKABgAAADa/x8AAAALABgAAADb/x8AAAAJABgAAADc/x8AAAAKABgAAADd/x8AAAALABgAAADe/x8AAAAMABgAAADf/x8AAAAJABgAAADg/x8AAAAKABgAAADh/x8AAAALABgAAADi/x8AAAAMABgAAADj/x8AAAAKABgAAADk/x8AAAALABgAAADl/x8AAAAMABgAAADq/xUAAAAIABgAAADr/xUAAAAJABgAAADs/xUAAAAKABgAAADt/xUAAAALABgAAADu/xUAAAAJABgAAADv/xUAAAAKABgAAADw/xUAAAALABgAAADx/xUAAAAMABgAAADy/xUAAAALABgAAADz/xUAAAAJABgAAAD0/xUAAAAKABgAAAD1/xUAAAALABgAAAD2/xUAAAAKABgAAAD3/xUAAAALABgAAAD4/xUAAAAMABgAAADO/xcAAAAIABgAAADP/xcAAAAJABgAAADQ/xcAAAAJABgAAADR/xcAAAAKABgAAADS/xcAAAALABgAAADT/xcAAAAMABgAAADU/xcAAAAJABgAAAC//w4AAAAIABgAAADA/w4AAAAJABgAAADB/w4AAAAKABgAAADC/w4AAAALABgAAADD/w4AAAAJABgAAADE/w4AAAAKABgAAADF/w4AAAALABgAAADG/w4AAAAMABgAAADH/w4AAAALABgAAAAXAB0AAAAIABgAAAAYAB0AAAAJABgAAAAZAB0AAAAKABgAAAAaAB0AAAALABgAAAAbAB0AAAAJABgAAAAcAB0AAAAKABgAAAAdAB0AAAALABgAAAAeAB0AAAAKABgAAAAfAB0AAAALABgAAAAgAB0AAAAMABgAAAAkABcAAAAIABgAAAAlABcAAAAJABgAAAAmABcAAAAKABgAAAAnABcAAAALABgAAAAoABcAAAAJABgAAAApABcAAAAKABgAAAAqABcAAAALABgAAAArABcAAAAKABgAAAAsABcAAAALABgAAAAtABcAAAAJABgAAAAuABcAAAAKABgAAAAwAA8AAAAIABgAAAAxAA8AAAAJABgAAAAyAA8AAAAKABgAAAAzAA8AAAALABgAAAA0AA8AAAAJABgAAAA1AA8AAAAKABgAAAA2AA8AAAALABgAAAA3AA8AAAAMABgAAAA4AA8AAAAJABgAAAA5AA8AAAAKABgAAAA6AA8AAAALABgAAAA9AAcAAAAIABgAAAA+AAcAAAAJABgAAAA/AAcAAAAKABgAAABAAAcAAAALABgAAABBAAcAAAAJABgAAABCAAcAAAAKABgAAABDAAcAAAAJABgAAAA=")
-tile_set = SubResource("TileSet_h4fw4")
-
 [node name="Tree" type="StaticBody2D" parent="." unique_id=1434168845]
 script = ExtResource("7_htree")
 
-[node name="InteractArea" type="Area2D" parent="Tree"]
-monitoring = true
-monitorable = true
+[node name="InteractArea" type="Area2D" parent="Tree" unique_id=262398589]
 collision_layer = 0
-collision_mask = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/InteractArea"]
-position = Vector2(1619, 476.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/InteractArea" unique_id=1315298058]
+position = Vector2(2500, 324)
 shape = SubResource("RectangleShape2D_tree_interact")
 
 [node name="Tree I" type="Sprite2D" parent="Tree" unique_id=320785314]
-position = Vector2(1616, 478)
+position = Vector2(2497, 325.5)
 texture = ExtResource("1_qxrlw")
 region_enabled = true
 region_rect = Rect2(419.49805, 261.7521, 82.75867, 87.54636)
 
 [node name="TreeCollision" type="CollisionShape2D" parent="Tree" unique_id=1685299973]
-position = Vector2(1619, 476.5)
+position = Vector2(2500, 324)
 shape = SubResource("RectangleShape2D_ldgsr")
 
 [node name="Tree 2" type="StaticBody2D" parent="." unique_id=1253588392]
-position = Vector2(1619, 476.5)
+position = Vector2(2500, 324)
 
 [node name="Tree II" type="Sprite2D" parent="Tree 2" unique_id=1609377920]
 position = Vector2(73, 0.5)
@@ -347,7 +103,7 @@ position = Vector2(75.5, -1)
 shape = SubResource("RectangleShape2D_o5yvi")
 
 [node name="Tree 3" type="StaticBody2D" parent="." unique_id=322685231]
-position = Vector2(1619, 476.5)
+position = Vector2(2500, 324)
 
 [node name="Tree III" type="Sprite2D" parent="Tree 3" unique_id=1166334616]
 position = Vector2(-3, -72.5)
@@ -360,7 +116,7 @@ position = Vector2(0, -74.5)
 shape = SubResource("RectangleShape2D_o5yvi")
 
 [node name="Tree 4" type="StaticBody2D" parent="." unique_id=2032199865]
-position = Vector2(1619, 476.5)
+position = Vector2(2500, 324)
 
 [node name="Tree IV" type="Sprite2D" parent="Tree 4" unique_id=2080572936]
 position = Vector2(74, -73.5)
@@ -375,44 +131,41 @@ shape = SubResource("RectangleShape2D_o5yvi")
 [node name="Cauldron" type="StaticBody2D" parent="." unique_id=1381955034]
 script = ExtResource("6_cauld")
 
-[node name="InteractArea" type="Area2D" parent="Cauldron"]
-monitoring = true
-monitorable = true
+[node name="InteractArea" type="Area2D" parent="Cauldron" unique_id=343703945]
 collision_layer = 0
-collision_mask = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cauldron/InteractArea"]
-position = Vector2(910, 555.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cauldron/InteractArea" unique_id=2117154059]
+position = Vector2(1086, 623.5)
 shape = SubResource("RectangleShape2D_cauldron_interact")
 
 [node name="Sprite2D" type="Sprite2D" parent="Cauldron" unique_id=1982286376]
-position = Vector2(912, 554)
+position = Vector2(1088, 622)
 texture = ExtResource("2_qxrlw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cauldron" unique_id=92724226]
-position = Vector2(910, 555.5)
+position = Vector2(1086, 623.5)
 shape = SubResource("RectangleShape2D_wrm1d")
 
 [node name="Herb" type="Area2D" parent="." unique_id=1998834664]
 script = ExtResource("5_wowpa")
 
 [node name="Sprite2D" type="Sprite2D" parent="Herb" unique_id=1125149645]
-position = Vector2(472, 452)
+position = Vector2(333, 625)
 texture = ExtResource("1_qxrlw")
 region_enabled = true
 region_rect = Rect2(311.1662, 305.76932, 26.38742, 40.66263)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Herb" unique_id=1729247818]
-position = Vector2(472, 451)
+position = Vector2(333, 624)
 shape = SubResource("RectangleShape2D_i6g32")
 
-[node name="Gleamwrought" parent="." instance=ExtResource("8_enemy")]
-position = Vector2(620, 520)
+[node name="Gleamwrought" parent="." unique_id=1736234554 instance=ExtResource("8_enemy")]
+position = Vector2(109, 613)
 
-[node name="CorruptionHUD" type="CanvasLayer" parent="."]
+[node name="CorruptionHUD" type="CanvasLayer" parent="." unique_id=770903181]
 visible = false
 
-[node name="HUDPanel" type="Control" parent="CorruptionHUD"]
+[node name="HUDPanel" type="Control" parent="CorruptionHUD" unique_id=528332374]
 visible = false
 layout_mode = 3
 anchors_preset = 0
@@ -422,7 +175,7 @@ offset_right = 280.0
 offset_bottom = 72.0
 script = ExtResource("10_hud")
 
-[node name="MarginContainer" type="MarginContainer" parent="CorruptionHUD/HUDPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="CorruptionHUD/HUDPanel" unique_id=1085959631]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -430,25 +183,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CorruptionHUD/HUDPanel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CorruptionHUD/HUDPanel/MarginContainer" unique_id=1753453159]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="StatusLabel" type="Label" parent="CorruptionHUD/HUDPanel/MarginContainer/VBoxContainer"]
+[node name="StatusLabel" type="Label" parent="CorruptionHUD/HUDPanel/MarginContainer/VBoxContainer" unique_id=732938055]
 layout_mode = 2
 text = "Tree Health: 100%"
 
-[node name="HealthBar" type="ProgressBar" parent="CorruptionHUD/HUDPanel/MarginContainer/VBoxContainer"]
+[node name="HealthBar" type="ProgressBar" parent="CorruptionHUD/HUDPanel/MarginContainer/VBoxContainer" unique_id=1768111282]
 custom_minimum_size = Vector2(220, 18)
 layout_mode = 2
-max_value = 100.0
 value = 100.0
 show_percentage = false
 
-[node name="ForestShieldHUD" type="CanvasLayer" parent="."]
+[node name="ForestShieldHUD" type="CanvasLayer" parent="." unique_id=1680892455]
 script = ExtResource("13_fshud")
 
-[node name="MinimalHUD" type="Control" parent="ForestShieldHUD"]
+[node name="MinimalHUD" type="Control" parent="ForestShieldHUD" unique_id=161092294]
 layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
@@ -459,7 +211,7 @@ offset_right = -16.0
 offset_bottom = 56.0
 grow_horizontal = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="ForestShieldHUD/MinimalHUD"]
+[node name="MarginContainer" type="MarginContainer" parent="ForestShieldHUD/MinimalHUD" unique_id=1496602711]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -467,108 +219,106 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBox" type="VBoxContainer" parent="ForestShieldHUD/MinimalHUD/MarginContainer"]
+[node name="VBox" type="VBoxContainer" parent="ForestShieldHUD/MinimalHUD/MarginContainer" unique_id=162316062]
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="ShieldLabel" type="Label" parent="ForestShieldHUD/MinimalHUD/MarginContainer/VBox"]
+[node name="ShieldLabel" type="Label" parent="ForestShieldHUD/MinimalHUD/MarginContainer/VBox" unique_id=1367172642]
 layout_mode = 2
 text = "Forest Shield: 100%"
 horizontal_alignment = 2
 
-[node name="ShieldBar" type="ProgressBar" parent="ForestShieldHUD/MinimalHUD/MarginContainer/VBox"]
+[node name="ShieldBar" type="ProgressBar" parent="ForestShieldHUD/MinimalHUD/MarginContainer/VBox" unique_id=605143140]
 custom_minimum_size = Vector2(180, 10)
 layout_mode = 2
-max_value = 100.0
 value = 100.0
 show_percentage = false
 
-[node name="ForestStatusPanel" type="PanelContainer" parent="ForestShieldHUD"]
+[node name="ForestStatusPanel" type="PanelContainer" parent="ForestShieldHUD" unique_id=484218974]
 visible = false
 offset_left = 16.0
 offset_top = 200.0
 offset_right = 276.0
 offset_bottom = 340.0
 
-[node name="MarginContainer" type="MarginContainer" parent="ForestShieldHUD/ForestStatusPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="ForestShieldHUD/ForestStatusPanel" unique_id=840715110]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBox" type="VBoxContainer" parent="ForestShieldHUD/ForestStatusPanel/MarginContainer"]
+[node name="VBox" type="VBoxContainer" parent="ForestShieldHUD/ForestStatusPanel/MarginContainer" unique_id=380615026]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="TitleLabel" type="Label" parent="ForestShieldHUD/ForestStatusPanel/MarginContainer/VBox"]
+[node name="TitleLabel" type="Label" parent="ForestShieldHUD/ForestStatusPanel/MarginContainer/VBox" unique_id=148266904]
 layout_mode = 2
 text = "Forest Status"
 
-[node name="TreeRows" type="VBoxContainer" parent="ForestShieldHUD/ForestStatusPanel/MarginContainer/VBox"]
+[node name="TreeRows" type="VBoxContainer" parent="ForestShieldHUD/ForestStatusPanel/MarginContainer/VBox" unique_id=1843447964]
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="Tree1Label" type="Label" parent="ForestShieldHUD/ForestStatusPanel/MarginContainer/VBox/TreeRows"]
+[node name="Tree1Label" type="Label" parent="ForestShieldHUD/ForestStatusPanel/MarginContainer/VBox/TreeRows" unique_id=592405024]
 layout_mode = 2
 text = "Forest Floor Tree: 100% — Healthy"
 
-[node name="Tree2Label" type="Label" parent="ForestShieldHUD/ForestStatusPanel/MarginContainer/VBox/TreeRows"]
+[node name="Tree2Label" type="Label" parent="ForestShieldHUD/ForestStatusPanel/MarginContainer/VBox/TreeRows" unique_id=1680890456]
 layout_mode = 2
 text = "Canopy Tree: 100% — Healthy"
 
-[node name="Tree3Label" type="Label" parent="ForestShieldHUD/ForestStatusPanel/MarginContainer/VBox/TreeRows"]
+[node name="Tree3Label" type="Label" parent="ForestShieldHUD/ForestStatusPanel/MarginContainer/VBox/TreeRows" unique_id=1801480057]
 layout_mode = 2
 text = "Underground Tree: 100% — Healthy"
 
-[node name="Tree4Label" type="Label" parent="ForestShieldHUD/ForestStatusPanel/MarginContainer/VBox/TreeRows"]
+[node name="Tree4Label" type="Label" parent="ForestShieldHUD/ForestStatusPanel/MarginContainer/VBox/TreeRows" unique_id=738392260]
 layout_mode = 2
 text = "Industrial Edge Tree: 100% — Healthy"
 
-[node name="PlayerFeedbackHUD" type="CanvasLayer" parent="."]
+[node name="PlayerFeedbackHUD" type="CanvasLayer" parent="." unique_id=292174143]
 script = ExtResource("11_feedback")
 
-[node name="CarryLabel" type="Label" parent="PlayerFeedbackHUD" groups=["carry_hud_label"]]
+[node name="CarryLabel" type="Label" parent="PlayerFeedbackHUD" unique_id=1115088311 groups=["carry_hud_label"]]
 offset_left = 16.0
 offset_top = 16.0
 offset_right = 260.0
 offset_bottom = 40.0
 text = "Carrying: Empty"
 
-[node name="NotificationLabel" type="Label" parent="PlayerFeedbackHUD"]
+[node name="NotificationLabel" type="Label" parent="PlayerFeedbackHUD" unique_id=1229364867]
 offset_left = 16.0
 offset_top = 44.0
 offset_right = 300.0
 offset_bottom = 68.0
-text = ""
 
-[node name="InventoryPanel" type="PanelContainer" parent="PlayerFeedbackHUD"]
+[node name="InventoryPanel" type="PanelContainer" parent="PlayerFeedbackHUD" unique_id=498202039]
 visible = false
 offset_left = 16.0
 offset_top = 112.0
 offset_right = 220.0
 offset_bottom = 200.0
 
-[node name="MarginContainer" type="MarginContainer" parent="PlayerFeedbackHUD/InventoryPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="PlayerFeedbackHUD/InventoryPanel" unique_id=860996756]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PlayerFeedbackHUD/InventoryPanel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerFeedbackHUD/InventoryPanel/MarginContainer" unique_id=839911897]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="TitleLabel" type="Label" parent="PlayerFeedbackHUD/InventoryPanel/MarginContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="PlayerFeedbackHUD/InventoryPanel/MarginContainer/VBoxContainer" unique_id=517658469]
 layout_mode = 2
 text = "Inventory"
 
-[node name="SlotLabel" type="Label" parent="PlayerFeedbackHUD/InventoryPanel/MarginContainer/VBoxContainer"]
+[node name="SlotLabel" type="Label" parent="PlayerFeedbackHUD/InventoryPanel/MarginContainer/VBoxContainer" unique_id=1934333153]
 layout_mode = 2
 text = "Slot 1: Empty"
 
-[node name="NotificationTimer" type="Timer" parent="PlayerFeedbackHUD"]
+[node name="NotificationTimer" type="Timer" parent="PlayerFeedbackHUD" unique_id=485727462]
 one_shot = true
 
 [connection signal="body_entered" from="Herb" to="Herb" method="_on_body_entered"]
