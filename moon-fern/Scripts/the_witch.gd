@@ -1,12 +1,24 @@
 extends CharacterBody2D
 
-const SPEED := 600.0
-const JUMP_VELOCITY := -600.0
-const CARRY_SPEED_MULTIPLIER := 0.65
 const MAX_ITEMS := 1
 const DROP_PICKUP_COOLDOWN := 0.3
 const DROP_PICKUP_FALLBACK_HALF := 8.0
 const PLAYER_COLLISION_FALLBACK_HALF := 16.0
+
+@export var max_speed: float = 520.0
+@export var carry_speed_multiplier: float = 0.72
+@export var acceleration: float = 2200.0
+@export var deceleration: float = 2800.0
+@export var air_acceleration: float = 1600.0
+@export var air_deceleration: float = 2000.0
+
+@export var jump_velocity: float = -650.0
+@export var gravity_multiplier: float = 1.0
+@export var fall_gravity_multiplier: float = 1.45
+@export var low_jump_multiplier: float = 2.3
+
+@export var coyote_time: float = 0.12
+@export var jump_buffer_time: float = 0.12
 
 @export var drop_padding: float = 4.0
 @export var drop_vertical_tweak: float = 0.0
@@ -21,6 +33,8 @@ var is_carrying := false
 var nearby_pickup: Node = null
 var nearby_interactable: Node = null
 var last_facing_direction := 1
+var _coyote_timer := 0.0
+var _jump_buffer_timer := 0.0
 
 func _ready() -> void:
 	add_to_group("player")
@@ -28,11 +42,10 @@ func _ready() -> void:
 	_sync_inventory_feedback()
 
 func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	if is_on_floor():
+		_coyote_timer = coyote_time
+	elif _coyote_timer > 0.0:
+		_coyote_timer = maxf(0.0, _coyote_timer - delta)
 
 	if Input.is_action_just_pressed("pickup"):
 		print("pickup pressed")
@@ -56,15 +69,54 @@ func _physics_process(delta: float) -> void:
 		if shield_hud and shield_hud.has_method("toggle_forest_status_panel"):
 			shield_hud.toggle_forest_status_panel() # M — forest status panel
 
-	var direction := Input.get_axis("move_left", "move_right")
-	var move_speed := SPEED * (CARRY_SPEED_MULTIPLIER if is_carrying else 1.0)
-	if direction != 0.0:
-		last_facing_direction = int(signf(direction))
-		velocity.x = direction * move_speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, move_speed)
+	if Input.is_action_just_pressed("jump"):
+		_jump_buffer_timer = jump_buffer_time
+	elif _jump_buffer_timer > 0.0:
+		_jump_buffer_timer = maxf(0.0, _jump_buffer_timer - delta)
+
+	_apply_horizontal_movement(delta)
+	_apply_gravity(delta)
+	_try_jump()
 
 	move_and_slide()
+
+
+func _apply_horizontal_movement(delta: float) -> void:
+	var direction := Input.get_axis("move_left", "move_right")
+	var target_speed := max_speed * (carry_speed_multiplier if is_carrying else 1.0)
+
+	if direction != 0.0:
+		last_facing_direction = int(signf(direction))
+		var accel := acceleration if is_on_floor() else air_acceleration
+		velocity.x = move_toward(velocity.x, direction * target_speed, accel * delta)
+	else:
+		var decel := deceleration if is_on_floor() else air_deceleration
+		velocity.x = move_toward(velocity.x, 0.0, decel * delta)
+
+
+func _apply_gravity(delta: float) -> void:
+	if is_on_floor() and velocity.y >= 0.0:
+		return
+
+	var grav_scale := gravity_multiplier
+	if velocity.y < 0.0:
+		if Input.is_action_pressed("jump"):
+			grav_scale = gravity_multiplier
+		else:
+			grav_scale = low_jump_multiplier
+	else:
+		grav_scale = fall_gravity_multiplier
+
+	velocity += get_gravity() * grav_scale * delta
+
+
+func _try_jump() -> void:
+	if _jump_buffer_timer <= 0.0 or _coyote_timer <= 0.0:
+		return
+
+	velocity.y = jump_velocity
+	_coyote_timer = 0.0
+	_jump_buffer_timer = 0.0
 
 
 func can_pick_up() -> bool:
