@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://b6suhv5g7wthk"]
+
+[ext_resource type="Texture2D" uid="uid://c8j5i0ohovhoq" path="res://Sprites/ForestGroundAssets1.png" id="1_fga"]
+
+[node name="GroundArtOverlay" type="Node2D"]
+
+[node name="SpawnGrassA" type="Sprite2D" parent="."]
+position = Vector2(700, 1210)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_fga")
+region_enabled = true
+region_rect = Rect2(2048, 344, 430, 216)
+
+[node name="SpawnGrassB" type="Sprite2D" parent="."]
+position = Vector2(860, 1210)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_fga")
+region_enabled = true
+region_rect = Rect2(2048, 344, 430, 216)
+
+[node name="HerbGrass" type="Sprite2D" parent="."]
+position = Vector2(879, 1288)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_fga")
+region_enabled = true
+region_rect = Rect2(2048, 344, 430, 216)
+
+[node name="PathWoodA" type="Sprite2D" parent="."]
+position = Vector2(1100, 1285)
+scale = Vector2(0.32, 0.32)
+texture = ExtResource("1_fga")
+region_enabled = true
+region_rect = Rect2(2480, 360, 432, 114)
+
+[node name="PathGrassMid" type="Sprite2D" parent="."]
+position = Vector2(1280, 1288)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_fga")
+region_enabled = true
+region_rect = Rect2(2048, 344, 430, 216)
+
+[node name="CauldronMetal" type="Sprite2D" parent="."]
+position = Vector2(1632, 1265)
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("1_fga")
+region_enabled = true
+region_rect = Rect2(2480, 830, 428, 290)
+
+[node name="CauldronGrass" type="Sprite2D" parent="."]
+position = Vector2(1632, 1295)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_fga")
+region_enabled = true
+region_rect = Rect2(2048, 344, 430, 216)
+
+[node name="TreePathWood" type="Sprite2D" parent="."]
+position = Vector2(2200, 1155)
+scale = Vector2(0.34, 0.34)
+texture = ExtResource("1_fga")
+region_enabled = true
+region_rect = Rect2(2480, 360, 432, 114)
+
+[node name="TreeCorruptA" type="Sprite2D" parent="."]
+position = Vector2(2920, 1065)
+scale = Vector2(0.32, 0.32)
+texture = ExtResource("1_fga")
+region_enabled = true
+region_rect = Rect2(2048, 812, 430, 220)
+
+[node name="TreeCorruptB" type="Sprite2D" parent="."]
+position = Vector2(3046, 1065)
+scale = Vector2(0.32, 0.32)
+texture = ExtResource("1_fga")
+region_enabled = true
+region_rect = Rect2(2048, 812, 430, 220)
+
+[node name="TreeCorruptC" type="Sprite2D" parent="."]
+position = Vector2(3170, 1065)
+scale = Vector2(0.32, 0.32)
+texture = ExtResource("1_fga")
+region_enabled = true
+region_rect = Rect2(2048, 812, 430, 220)
+
+[node name="TreeGrassEdge" type="Sprite2D" parent="."]
+position = Vector2(2800, 1095)
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("1_fga")
+region_enabled = true
+region_rect = Rect2(2048, 344, 430, 216)
