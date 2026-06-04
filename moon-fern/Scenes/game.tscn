@@ -23,12 +23,6 @@ size = Vector2(43, 58.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tree_interact"]
 size = Vector2(120, 110)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ldgsr"]
-size = Vector2(64, 65)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o5yvi"]
-size = Vector2(65, 65)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cauldron_interact"]
 size = Vector2(120, 90)
 
@@ -48,6 +42,7 @@ position = Vector2(-546, -698)
 script = ExtResource("12_fshield")
 
 [node name="TheWitch" type="CharacterBody2D" parent="." unique_id=1722578828]
+z_index = 1
 script = ExtResource("1_wrm1d")
 
 [node name="WitchBody" type="Sprite2D" parent="TheWitch" unique_id=1451766428]
@@ -69,11 +64,15 @@ position = Vector2(209, 312)
 position = Vector2(230, 546)
 shape = SubResource("RectangleShape2D_wowpa")
 
-[node name="Tree" type="StaticBody2D" parent="." unique_id=1434168845]
+[node name="Tree" type="Node2D" parent="." unique_id=1434168845]
+z_index = -1
 script = ExtResource("7_htree")
 
 [node name="InteractArea" type="Area2D" parent="Tree" unique_id=262398589]
 collision_layer = 0
+collision_mask = 1
+monitoring = true
+monitorable = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/InteractArea" unique_id=1315298058]
 position = Vector2(2500, 324)
@@ -85,11 +84,7 @@ texture = ExtResource("1_qxrlw")
 region_enabled = true
 region_rect = Rect2(419.49805, 261.7521, 82.75867, 87.54636)
 
-[node name="TreeCollision" type="CollisionShape2D" parent="Tree" unique_id=1685299973]
-position = Vector2(2500, 324)
-shape = SubResource("RectangleShape2D_ldgsr")
-
-[node name="Tree 2" type="StaticBody2D" parent="." unique_id=1253588392]
+[node name="Tree 2" type="Node2D" parent="." unique_id=1253588392]
 position = Vector2(2500, 324)
 
 [node name="Tree II" type="Sprite2D" parent="Tree 2" unique_id=1609377920]
@@ -98,11 +93,7 @@ texture = ExtResource("1_qxrlw")
 region_enabled = true
 region_rect = Rect2(419.49805, 261.7521, 82.75867, 87.54636)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree 2" unique_id=1523670867]
-position = Vector2(75.5, -1)
-shape = SubResource("RectangleShape2D_o5yvi")
-
-[node name="Tree 3" type="StaticBody2D" parent="." unique_id=322685231]
+[node name="Tree 3" type="Node2D" parent="." unique_id=322685231]
 position = Vector2(2500, 324)
 
 [node name="Tree III" type="Sprite2D" parent="Tree 3" unique_id=1166334616]
@@ -111,11 +102,7 @@ texture = ExtResource("1_qxrlw")
 region_enabled = true
 region_rect = Rect2(419.49805, 261.7521, 82.75867, 87.54636)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree 3" unique_id=1245497372]
-position = Vector2(0, -74.5)
-shape = SubResource("RectangleShape2D_o5yvi")
-
-[node name="Tree 4" type="StaticBody2D" parent="." unique_id=2032199865]
+[node name="Tree 4" type="Node2D" parent="." unique_id=2032199865]
 position = Vector2(2500, 324)
 
 [node name="Tree IV" type="Sprite2D" parent="Tree 4" unique_id=2080572936]
@@ -123,10 +110,6 @@ position = Vector2(74, -73.5)
 texture = ExtResource("1_qxrlw")
 region_enabled = true
 region_rect = Rect2(419.49805, 261.7521, 82.75867, 87.54636)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree 4" unique_id=600352733]
-position = Vector2(77, -74.5)
-shape = SubResource("RectangleShape2D_o5yvi")
 
 [node name="Cauldron" type="StaticBody2D" parent="." unique_id=1381955034]
 script = ExtResource("6_cauld")
