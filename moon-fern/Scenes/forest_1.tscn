@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://ddsu2cqsqo4yx" path="res://Sprites/working_assets.png" id="1_r32eu"]
 [ext_resource type="Texture2D" uid="uid://btjogwkquka4l" path="res://Sprites/cauldron.png" id="2_2ppen"]
 [ext_resource type="Texture2D" uid="uid://rra8y6b8a5ri" path="res://Sprites/Sprite-0001.png" id="2_k85ka"]
+[ext_resource type="Texture2D" uid="uid://c8j5i0ohovhoq" path="res://Sprites/ForestGroundAssets1.png" id="3_fga"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2ppen"]
 texture = ExtResource("1_r32eu")
@@ -1387,3 +1388,49 @@ tile_map_data = PackedByteArray("AABZAe3/AQAOABgAAABZAe7/AQAOABYAAABZAe//AQAOABc
 tile_set = SubResource("TileSet_ven6l")
 
 [node name="Witches\' Tree Village" type="TileMapLayer" parent="." unique_id=573949353]
+
+[node name="VisualArt" type="Node2D" parent="."]
+
+[node name="GroundFloorArt" type="Node2D" parent="VisualArt"]
+
+[node name="GroundDirtPatch01" type="Sprite2D" parent="VisualArt/GroundFloorArt"]
+z_index = 0
+position = Vector2(720, 1220)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_fga")
+region_enabled = true
+region_rect = Rect2(2048, 344, 430, 216)
+
+[node name="CanopyArt" type="Node2D" parent="VisualArt"]
+
+[node name="CanopyWoodPlatform01" type="Sprite2D" parent="VisualArt/CanopyArt"]
+z_index = 0
+position = Vector2(480, -4950)
+scale = Vector2(0.32, 0.32)
+texture = ExtResource("3_fga")
+region_enabled = true
+region_rect = Rect2(2480, 360, 432, 114)
+
+[node name="UndergroundArt" type="Node2D" parent="VisualArt"]
+
+[node name="UndergroundDarkPatch01" type="Sprite2D" parent="VisualArt/UndergroundArt"]
+z_index = 0
+position = Vector2(520, -7850)
+scale = Vector2(0.32, 0.32)
+texture = ExtResource("3_fga")
+region_enabled = true
+region_rect = Rect2(2048, 812, 430, 220)
+
+[node name="IndustrialArt" type="Node2D" parent="VisualArt"]
+
+[node name="IndustrialMetalPatch01" type="Sprite2D" parent="VisualArt/IndustrialArt"]
+z_index = 0
+position = Vector2(3600, 9720)
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("3_fga")
+region_enabled = true
+region_rect = Rect2(2480, 830, 428, 290)
+
+[node name="TreeArt" type="Node2D" parent="VisualArt"]
+
+[node name="PropArt" type="Node2D" parent="VisualArt"]
