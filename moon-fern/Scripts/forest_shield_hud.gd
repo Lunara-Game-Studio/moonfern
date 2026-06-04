@@ -65,6 +65,10 @@ func _apply_status_color(label: Label, status: String) -> void:
 	match status:
 		"Healed":
 			label.modulate = Color(0.7, 1.0, 0.75)
+		"Stabilized":
+			label.modulate = Color(0.65, 0.95, 0.85)
+		"Under Attack":
+			label.modulate = Color(1.0, 0.55, 0.45)
 		"Fully Corrupted":
 			label.modulate = Color(0.55, 0.35, 0.45)
 		"Critical":

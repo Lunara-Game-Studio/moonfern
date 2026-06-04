@@ -1,6 +1,7 @@
 extends Node
 
 signal forest_shield_changed(percent: float)
+signal active_target_changed(index: int, display_name: String)
 
 const TREE_COUNT := 4
 
@@ -8,12 +9,18 @@ const TREE_COUNT := 4
 
 var _last_shield_percent: float = -1.0
 var _tree_entries: Array[Dictionary] = []
+var _active_tree_index: int = 0
 
 
 func _ready() -> void:
 	_build_tree_entries()
 	_wire_tree_1()
+	_mark_tree_under_attack(0)
 	call_deferred("_refresh_shield")
+
+
+func get_active_tree_index() -> int:
+	return _active_tree_index
 
 
 func get_forest_shield_percent() -> float:
@@ -53,7 +60,9 @@ func _build_tree_entries() -> void:
 			"hud_label": "Forest Floor Tree",
 			"tree_node": null,
 			"placeholder_health_percent": 100.0,
-			# Future: per-tree corruption blocks (not interactive yet).
+			"is_active_target": true,
+			"under_attack": true,
+			"stabilized": false,
 			"damage_blocks": [100, 100, 100, 100],
 		},
 		{
@@ -62,6 +71,9 @@ func _build_tree_entries() -> void:
 			"hud_label": "Canopy Tree",
 			"tree_node": null,
 			"placeholder_health_percent": 100.0,
+			"is_active_target": false,
+			"under_attack": false,
+			"stabilized": false,
 			"damage_blocks": [100, 100, 100, 100],
 		},
 		{
@@ -70,6 +82,9 @@ func _build_tree_entries() -> void:
 			"hud_label": "Underground Tree",
 			"tree_node": null,
 			"placeholder_health_percent": 100.0,
+			"is_active_target": false,
+			"under_attack": false,
+			"stabilized": false,
 			"damage_blocks": [100, 100, 100, 100],
 		},
 		{
@@ -78,6 +93,9 @@ func _build_tree_entries() -> void:
 			"hud_label": "Industrial Edge Tree",
 			"tree_node": null,
 			"placeholder_health_percent": 100.0,
+			"is_active_target": false,
+			"under_attack": false,
+			"stabilized": false,
 			"damage_blocks": [100, 100, 100, 100],
 		},
 	]
@@ -94,6 +112,10 @@ func _wire_tree_1() -> void:
 		tree.health_changed.connect(_on_tree_1_health_changed)
 	if tree.has_signal("healed"):
 		tree.healed.connect(_on_tree_1_healed)
+	if tree.has_signal("stabilized"):
+		tree.stabilized.connect(_on_tree_1_stabilized)
+	if tree.has_signal("under_attack_changed"):
+		tree.under_attack_changed.connect(_on_tree_1_under_attack_changed)
 
 
 func _on_tree_1_health_changed(_percent: float = 0.0) -> void:
@@ -102,6 +124,44 @@ func _on_tree_1_health_changed(_percent: float = 0.0) -> void:
 
 func _on_tree_1_healed() -> void:
 	_refresh_shield()
+
+
+func _on_tree_1_stabilized() -> void:
+	_tree_entries[0]["stabilized"] = true
+	_tree_entries[0]["under_attack"] = false
+	_advance_active_target(1)
+
+
+func _on_tree_1_under_attack_changed(is_under_attack: bool) -> void:
+	_tree_entries[0]["under_attack"] = is_under_attack and not _tree_entries[0].get("stabilized", false)
+	_refresh_shield()
+
+
+func _advance_active_target(next_index: int) -> void:
+	if next_index < 0 or next_index >= TREE_COUNT:
+		return
+
+	_active_tree_index = next_index
+	for i in TREE_COUNT:
+		var entry: Dictionary = _tree_entries[i]
+		entry["is_active_target"] = i == next_index
+		if i != next_index:
+			entry["under_attack"] = false
+
+	var next_entry: Dictionary = _tree_entries[next_index]
+	next_entry["under_attack"] = true
+	if next_entry.get("tree_node") == null:
+		next_entry["placeholder_health_percent"] = 75.0
+
+	var label: String = next_entry.get("hud_label", "Tree")
+	active_target_changed.emit(next_index, label)
+	_refresh_shield()
+
+
+func _mark_tree_under_attack(index: int) -> void:
+	if index < 0 or index >= _tree_entries.size():
+		return
+	_tree_entries[index]["under_attack"] = true
 
 
 func _get_entry_health_percent(entry: Dictionary) -> float:
@@ -116,12 +176,29 @@ func _get_entry_status_text(entry: Dictionary) -> String:
 	var tree: Node = entry.get("tree_node")
 	if tree != null and is_instance_valid(tree) and tree.has_method("get_tree_status_text"):
 		return tree.get_tree_status_text()
+
+	if entry.get("stabilized", false):
+		return "Stabilized"
+	if entry.get("under_attack", false) and entry.get("is_active_target", false):
+		return "Under Attack"
+	if entry.get("is_active_target", false):
+		return "Damaged"
+
+	var health := float(entry.get("placeholder_health_percent", 100.0))
+	if health <= 0.0:
+		return "Fully Corrupted"
+	if health <= 30.0:
+		return "Critical"
+	if health < 100.0:
+		return "Damaged"
 	return "Healthy"
 
 
 func _refresh_shield() -> void:
 	var percent := get_forest_shield_percent()
 	if _last_shield_percent >= 0.0 and is_equal_approx(percent, _last_shield_percent):
+		# Still refresh HUD when only status text changes.
+		forest_shield_changed.emit(percent)
 		return
 	_last_shield_percent = percent
 	forest_shield_changed.emit(percent)

@@ -25,6 +25,9 @@ size = Vector2(43, 58.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tree_interact"]
 size = Vector2(160, 140)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_tree_attack"]
+radius = 200.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cauldron_interact"]
 size = Vector2(120, 90)
 
@@ -69,6 +72,16 @@ shape = SubResource("RectangleShape2D_wowpa")
 z_index = -1
 position = Vector2(2500, 324)
 script = ExtResource("7_htree")
+
+[node name="AttackArea" type="Area2D" parent="Tree" unique_id=3847291051]
+collision_layer = 0
+collision_mask = 1
+monitoring = true
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/AttackArea" unique_id=2847193052]
+position = Vector2(0, 40)
+shape = SubResource("CircleShape2D_tree_attack")
 
 [node name="InteractArea" type="Area2D" parent="Tree" unique_id=262398589]
 collision_layer = 0
@@ -118,6 +131,14 @@ shape = SubResource("RectangleShape2D_i6g32")
 
 [node name="Gleamwrought" parent="." unique_id=1736234554 instance=ExtResource("8_enemy")]
 position = Vector2(109, 613)
+
+[node name="Gleamwrought2" parent="." unique_id=1736234555 instance=ExtResource("8_enemy")]
+position = Vector2(2430, 410)
+attack_tree_path = NodePath("../Tree")
+
+[node name="Gleamwrought3" parent="." unique_id=1736234556 instance=ExtResource("8_enemy")]
+position = Vector2(2570, 410)
+attack_tree_path = NodePath("../Tree")
 
 [node name="CorruptionHUD" type="CanvasLayer" parent="." unique_id=770903181]
 visible = false
