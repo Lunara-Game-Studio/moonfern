@@ -4,6 +4,8 @@ signal health_changed(percent: float)
 signal became_critical
 signal became_fully_corrupted
 signal healed
+signal stabilized
+signal under_attack_changed(is_under_attack: bool)
 
 @export var max_tree_health: float = 100.0
 @export var current_tree_health: float = 100.0
@@ -13,20 +15,25 @@ signal healed
 @export var healing_amount_per_potion: float = 25.0
 
 var is_healed := false
+var is_stabilized := false
 var _was_critical := false
 var _was_fully_corrupted := false
 var _health_debug_timer := 0.0
 var _pulse_time := 0.0
+var _is_under_attack := false
+var _attackers_nearby := 0
 
 # Future: optional per-tree damage blocks (not interactive in this branch).
 var damage_blocks: Array[int] = [100, 100, 100, 100]
 
 @onready var _interact_area: Area2D = get_node_or_null("InteractArea")
+@onready var _attack_area: Area2D = get_node_or_null("AttackArea")
 @onready var _sprite: Sprite2D = $"Tree I"
 
 
 func _ready() -> void:
 	add_to_group("interactable")
+	add_to_group("active_corruption_target")
 	print("HealingTree script ready")
 	if _interact_area == null:
 		push_error("Tree InteractArea missing")
@@ -42,17 +49,38 @@ func _ready() -> void:
 	if not _interact_area.body_exited.is_connected(_on_body_exited):
 		_interact_area.body_exited.connect(_on_body_exited)
 
+	_setup_attack_area()
+
 	current_tree_health = clampf(current_tree_health, 0.0, max_tree_health)
 	_health_debug_timer = health_debug_interval
 	_apply_visual()
 	health_changed.emit(get_health_percent())
 
 
+func _setup_attack_area() -> void:
+	if _attack_area == null:
+		push_warning("Tree AttackArea missing — corruption will not trigger from enemies")
+		return
+
+	_attack_area.monitoring = true
+	_attack_area.monitorable = false
+	_attack_area.collision_layer = 0
+	_attack_area.collision_mask = 1
+	if not _attack_area.body_entered.is_connected(_on_attack_body_entered):
+		_attack_area.body_entered.connect(_on_attack_body_entered)
+	if not _attack_area.body_exited.is_connected(_on_attack_body_exited):
+		_attack_area.body_exited.connect(_on_attack_body_exited)
+
+
 func _process(delta: float) -> void:
 	if is_healed:
 		return
 
-	_tick_corruption(delta)
+	_update_under_attack_state()
+
+	if not is_stabilized and _is_under_attack:
+		_tick_corruption(delta)
+
 	_pulse_time += delta
 	_apply_visual()
 
@@ -82,18 +110,29 @@ func is_restored() -> bool:
 		and not is_fully_corrupted()
 		and not is_critical()
 		and get_health_percent() < 100.0
+		and not is_stabilized
 	)
+
+
+func is_under_attack() -> bool:
+	return _is_under_attack and not is_stabilized and not is_healed
 
 
 func get_tree_status_text() -> String:
 	if is_healed:
 		return "Healed"
+	if is_stabilized:
+		return "Stabilized"
+	if is_under_attack():
+		return "Under Attack"
 	if is_fully_corrupted():
 		return "Fully Corrupted"
 	if is_critical():
 		return "Critical"
 	if is_restored():
 		return "Restored"
+	if get_health_percent() < 100.0:
+		return "Damaged"
 	return "Healthy"
 
 
@@ -187,6 +226,14 @@ func _apply_potion_heal(player: Node) -> void:
 		print("Restored part of fully corrupted tree")
 	_notify(player, "Tree restored +%d%%" % gained_percent)
 
+	if not is_stabilized:
+		is_stabilized = true
+		remove_from_group("active_corruption_target")
+		print("Tree stabilized")
+		stabilized.emit()
+		_notify(player, "Tree stabilized!")
+		health_changed.emit(get_health_percent())
+
 
 func _get_interact_bounds() -> Rect2:
 	var collision := _interact_area.get_node_or_null("CollisionShape2D") as CollisionShape2D
@@ -222,6 +269,11 @@ func _find_dropped_potion_in_area() -> Node:
 func _apply_visual() -> void:
 	if is_healed:
 		_sprite.modulate = Color(0.85, 1.0, 0.85)
+	elif is_stabilized:
+		_sprite.modulate = Color(0.72, 0.95, 0.82)
+	elif is_under_attack():
+		var stress: float = 0.9 + 0.1 * abs(sin(_pulse_time * 5.0))
+		_sprite.modulate = Color(0.65 * stress, 0.5 * stress, 0.55 * stress)
 	elif is_fully_corrupted():
 		var dim: float = 0.7 + 0.3 * abs(sin(_pulse_time * 4.0))
 		_sprite.modulate = Color(0.25 * dim, 0.2 * dim, 0.3 * dim)
@@ -256,3 +308,51 @@ func _resolve_player(node: Node) -> Node:
 	if parent and parent.is_in_group("player") and parent is CharacterBody2D:
 		return parent
 	return null
+
+
+func _update_under_attack_state() -> void:
+	var was_attack := _is_under_attack
+	if _attack_area:
+		_is_under_attack = _count_gleamwrought_in_attack_area() > 0
+	else:
+		_is_under_attack = _attackers_nearby > 0
+
+	if _is_under_attack == was_attack:
+		return
+
+	if _is_under_attack:
+		print("Tree under attack")
+	else:
+		print("Tree no longer under attack")
+	under_attack_changed.emit(_is_under_attack)
+
+
+func _count_gleamwrought_in_attack_area() -> int:
+	var count := 0
+	for body in _attack_area.get_overlapping_bodies():
+		if _is_gleamwrought_body(body):
+			count += 1
+	return count
+
+
+func _is_gleamwrought_body(body: Node) -> bool:
+	if body == null:
+		return false
+	if body.is_in_group("gleamwrought"):
+		return true
+	var parent := body.get_parent()
+	return parent != null and parent.is_in_group("gleamwrought")
+
+
+func _on_attack_body_entered(body: Node2D) -> void:
+	if not _is_gleamwrought_body(body):
+		return
+	_attackers_nearby += 1
+	_update_under_attack_state()
+
+
+func _on_attack_body_exited(body: Node2D) -> void:
+	if not _is_gleamwrought_body(body):
+		return
+	_attackers_nearby = maxi(0, _attackers_nearby - 1)
+	_update_under_attack_state()
