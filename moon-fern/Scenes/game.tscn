@@ -69,7 +69,7 @@ position = Vector2(230, 546)
 shape = SubResource("RectangleShape2D_wowpa")
 
 [node name="Tree" type="Node2D" parent="." unique_id=1434168845]
-z_index = -1
+z_index = 0
 position = Vector2(2500, 324)
 script = ExtResource("7_htree")
 
