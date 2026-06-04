@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chfvmkx7u2rw"
-path="res://.godot/imported/Ignore.png-d6f8afc0c98a363cbf4604b319e78aa3.ctex"
+uid="uid://chpwwexp7v38o"
+path="res://.godot/imported/Ground Floor Tree.png-b7db67eee92401ed0bcd6ebdbb18de27.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Ignore.png"
-dest_files=["res://.godot/imported/Ignore.png-d6f8afc0c98a363cbf4604b319e78aa3.ctex"]
+source_file="res://Sprites/Ground Floor Tree.png"
+dest_files=["res://.godot/imported/Ground Floor Tree.png-b7db67eee92401ed0bcd6ebdbb18de27.ctex"]
 
 [params]
 

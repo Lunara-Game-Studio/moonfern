@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://pslg8h37gxda"
-path="res://.godot/imported/NyraSideNoBackground.png-cec8b8468015415d33bcadf5e44bcae2.ctex"
+path="res://.godot/imported/Nyra.png-8ca1a072d886e436db333ab0c0440655.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/NyraSideNoBackground.png"
-dest_files=["res://.godot/imported/NyraSideNoBackground.png-cec8b8468015415d33bcadf5e44bcae2.ctex"]
+source_file="res://Sprites/Nyra.png"
+dest_files=["res://.godot/imported/Nyra.png-8ca1a072d886e436db333ab0c0440655.ctex"]
 
 [params]
 

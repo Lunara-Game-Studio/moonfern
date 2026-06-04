@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chpwwexp7v38o"
-path="res://.godot/imported/TreePlaytestVersion.png-232590c9489fe57f1cfa0e83626b8bd0.ctex"
+uid="uid://bs3p4wtmo0ao8"
+path="res://.godot/imported/Gleamwright.png-8680d9e76c495dd4b0ac0eb6e67a0cd7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/TreePlaytestVersion.png"
-dest_files=["res://.godot/imported/TreePlaytestVersion.png-232590c9489fe57f1cfa0e83626b8bd0.ctex"]
+source_file="res://Sprites/Gleamwright.png"
+dest_files=["res://.godot/imported/Gleamwright.png-8680d9e76c495dd4b0ac0eb6e67a0cd7.ctex"]
 
 [params]
 
