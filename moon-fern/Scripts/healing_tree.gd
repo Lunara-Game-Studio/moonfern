@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Node2D
 
 signal health_changed(percent: float)
 signal became_critical
@@ -33,6 +33,10 @@ func _ready() -> void:
 		return
 
 	print("Tree InteractArea found")
+	_interact_area.monitoring = true
+	_interact_area.monitorable = true
+	_interact_area.collision_layer = 0
+	_interact_area.collision_mask = 1
 	if not _interact_area.body_entered.is_connected(_on_body_entered):
 		_interact_area.body_entered.connect(_on_body_entered)
 	if not _interact_area.body_exited.is_connected(_on_body_exited):
