@@ -12,8 +12,9 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "TheWitch":
+		set_process(false)
+		set_physics_process(false)
 		var new_scene = load("res://Scenes/underground_forest.tscn").instantiate()
-		print(new_scene)
-		get_parent().get_parent().get_node("Base forest").queue_free()
-		get_parent().get_parent().add_child(new_scene)
+		get_parent().get_parent().get_parent().get_node("Base forest").queue_free()
+		get_parent().get_parent().get_parent().add_child(new_scene)
 		body.global_position = Vector2(600, 100)

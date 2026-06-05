@@ -13,10 +13,12 @@ var _active_tree_index: int = 0
 
 
 func _ready() -> void:
+	add_to_group("forest_shield_manager")
 	_build_tree_entries()
 	_wire_tree_1()
 	_mark_tree_under_attack(0)
 	call_deferred("_refresh_shield")
+
 
 
 func get_active_tree_index() -> int:
@@ -202,3 +204,13 @@ func _refresh_shield() -> void:
 		return
 	_last_shield_percent = percent
 	forest_shield_changed.emit(percent)
+	
+func take_damage(amount: float) -> void:
+	var active_entry: Dictionary = _tree_entries[_active_tree_index]
+	var tree: Node = active_entry.get("tree_node")
+	if tree != null and is_instance_valid(tree):
+		tree.current_tree_health = maxf(0.0, tree.current_tree_health - amount)
+		tree.health_changed.emit(tree.get_health_percent())
+	else:
+		active_entry["placeholder_health_percent"] = maxf(0.0, _get_entry_health_percent(active_entry) - amount)
+	_refresh_shield()

@@ -85,6 +85,13 @@ func _physics_process(delta: float) -> void:
 			_process_attack_tree(delta)
 
 	move_and_slide()
+	
+	if _catch_cooldown_timer <= 0.0 and _contact_area:
+		for body in _contact_area.get_overlapping_bodies():
+			if body.has_method("on_caught_by_enemy"):
+				body.on_caught_by_enemy()
+				_catch_cooldown_timer = catch_cooldown
+				break
 
 
 func _find_player() -> void:

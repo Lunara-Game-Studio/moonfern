@@ -50,7 +50,7 @@ position = Vector2(318, 322.00003)
 script = ExtResource("12_fshield")
 
 [node name="TheWitch" type="CharacterBody2D" parent="." unique_id=1722578828]
-z_index = 2
+z_index = 5
 position = Vector2(0, 100)
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_wrm1d")
@@ -251,6 +251,7 @@ layout_mode = 2
 text = "Underground Tree: 100% — Healthy"
 
 [node name="Tree4Label" type="Label" parent="ForestShieldHUD/ForestStatusPanel/MarginContainer/VBox/TreeRows" unique_id=738392260]
+visible = false
 layout_mode = 2
 text = "Industrial Edge Tree: 100% — Healthy"
 
