@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://sl2fl5bw2wlb"]
 
+[ext_resource type="Texture2D" uid="uid://pslg8h37gxda" path="res://Sprites/Nyra.png" id="1_nyra"]
 [ext_resource type="Texture2D" uid="uid://ddsu2cqsqo4yx" path="res://Sprites/working_assets.png" id="1_qxrlw"]
 [ext_resource type="Script" uid="uid://dijof527jbsms" path="res://Scripts/the_witch.gd" id="1_wrm1d"]
-[ext_resource type="Texture2D" uid="uid://pslg8h37gxda" path="res://Sprites/Nyra.png" id="1_nyra"]
+[ext_resource type="PackedScene" uid="uid://bo0f6fal52hyg" path="res://Scenes/base_forest.tscn" id="2_nnt18"]
 [ext_resource type="Texture2D" uid="uid://btjogwkquka4l" path="res://Sprites/cauldron.png" id="2_qxrlw"]
 [ext_resource type="Texture2D" uid="uid://chpwwexp7v38o" path="res://Sprites/Ground Floor Tree.png" id="3_gftree"]
-[ext_resource type="PackedScene" uid="uid://bxc5skjaairf6" path="res://Scenes/forest_1.tscn" id="2_rfjv2"]
 [ext_resource type="Script" uid="uid://i66jj27o3w4f" path="res://Scripts/herb.gd" id="5_wowpa"]
 [ext_resource type="Script" uid="uid://dkb85m26uspwr" path="res://Scripts/cauldron.gd" id="6_cauld"]
 [ext_resource type="Script" uid="uid://byw7rwllw2jbf" path="res://Scripts/healing_tree.gd" id="7_htree"]
@@ -15,19 +15,21 @@
 [ext_resource type="Script" uid="uid://ddmu1ylpecqbo" path="res://Scripts/player_feedback_ui.gd" id="11_feedback"]
 [ext_resource type="Script" uid="uid://7htady161uy7" path="res://Scripts/forest_shield_manager.gd" id="12_fshield"]
 [ext_resource type="Script" uid="uid://blbc4y73de3x8" path="res://Scripts/forest_shield_hud.gd" id="13_fshud"]
-[ext_resource type="Script" path="res://Scripts/camera_follow.gd" id="14_cam"]
+[ext_resource type="Script" uid="uid://dqoo6o1rhm120" path="res://Scripts/camera_follow.gd" id="14_cam"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3dryh"]
-radius = 16.03122
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nnt18"]
+radius = 14.5
+height = 100.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wowpa"]
-size = Vector2(43, 58.5)
+size = Vector2(60.5, 130.25)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ewbju"]
+radius = 230.0
+height = 912.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tree_interact"]
-size = Vector2(160, 140)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_tree_attack"]
-radius = 200.0
+size = Vector2(695.5, 1011)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cauldron_interact"]
 size = Vector2(120, 90)
@@ -41,69 +43,60 @@ size = Vector2(21, 27)
 [node name="Game" type="Node2D" unique_id=623895467]
 script = ExtResource("9_cfb")
 
-[node name="Forest" parent="." unique_id=824735648 instance=ExtResource("2_rfjv2")]
-position = Vector2(-546, -698)
+[node name="Base forest" parent="." unique_id=201510789 instance=ExtResource("2_nnt18")]
+position = Vector2(341, 404)
 
 [node name="ForestShieldManager" type="Node" parent="." unique_id=989220108]
 script = ExtResource("12_fshield")
 
 [node name="TheWitch" type="CharacterBody2D" parent="." unique_id=1722578828]
-z_index = 1
+z_index = 2
 position = Vector2(0, 100)
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_wrm1d")
 
 [node name="WitchBody" type="Sprite2D" parent="TheWitch" unique_id=1451766428]
-position = Vector2(225, 547)
-scale = Vector2(0.042, 0.042)
+position = Vector2(162.66669, 326.6667)
+scale = Vector2(0.06906202, 0.061666675)
 texture = ExtResource("1_nyra")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TheWitch" unique_id=1694820873]
-position = Vector2(231.5, 554.75)
-shape = SubResource("CircleShape2D_3dryh")
+position = Vector2(158.66666, 324.66666)
+shape = SubResource("CapsuleShape2D_nnt18")
 
 [node name="Camera2D" type="Camera2D" parent="TheWitch" unique_id=717312124]
 position = Vector2(209, 265)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
-drag_horizontal_enabled = false
-drag_vertical_enabled = false
 script = ExtResource("14_cam")
 
 [node name="Area2D" type="Area2D" parent="TheWitch" unique_id=268729412]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TheWitch/Area2D" unique_id=1625664951]
-position = Vector2(230, 546)
+position = Vector2(155.33333, 324.66666)
 shape = SubResource("RectangleShape2D_wowpa")
 
 [node name="Tree" type="Node2D" parent="." unique_id=1434168845]
-z_index = 0
-position = Vector2(2500, 324)
+position = Vector2(598, -294)
 script = ExtResource("7_htree")
 
-[node name="AttackArea" type="Area2D" parent="Tree" unique_id=3847291051]
+[node name="Tree I" type="Sprite2D" parent="Tree" unique_id=320785314]
+position = Vector2(-22, -16)
+scale = Vector2(0.7920898, 0.72350264)
+texture = ExtResource("3_gftree")
+
+[node name="AttackArea" type="Area2D" parent="Tree" unique_id=-447676245]
 collision_layer = 0
-collision_mask = 1
-monitoring = true
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/AttackArea" unique_id=2847193052]
-position = Vector2(0, 40)
-shape = SubResource("CircleShape2D_tree_attack")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/AttackArea" unique_id=-1447774244]
+shape = SubResource("CapsuleShape2D_ewbju")
 
 [node name="InteractArea" type="Area2D" parent="Tree" unique_id=262398589]
 collision_layer = 0
-collision_mask = 1
-monitoring = true
-monitorable = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/InteractArea" unique_id=1315298058]
-position = Vector2(0, 80)
 shape = SubResource("RectangleShape2D_tree_interact")
-
-[node name="Tree I" type="Sprite2D" parent="Tree" unique_id=320785314]
-position = Vector2(-3, 1.5)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("3_gftree")
 
 [node name="Cauldron" type="StaticBody2D" parent="." unique_id=1381955034]
 script = ExtResource("6_cauld")
@@ -137,15 +130,14 @@ position = Vector2(333, 624)
 shape = SubResource("RectangleShape2D_i6g32")
 
 [node name="Gleamwrought" parent="." unique_id=1736234554 instance=ExtResource("8_enemy")]
-position = Vector2(109, 613)
+position = Vector2(495, 614)
+scale = Vector2(2, 2)
 
 [node name="Gleamwrought2" parent="." unique_id=1736234555 instance=ExtResource("8_enemy")]
-position = Vector2(2430, 410)
-attack_tree_path = NodePath("../Tree")
+position = Vector2(1975, 694)
 
 [node name="Gleamwrought3" parent="." unique_id=1736234556 instance=ExtResource("8_enemy")]
-position = Vector2(2570, 410)
-attack_tree_path = NodePath("../Tree")
+position = Vector2(2157, 693)
 
 [node name="CorruptionHUD" type="CanvasLayer" parent="." unique_id=770903181]
 visible = false

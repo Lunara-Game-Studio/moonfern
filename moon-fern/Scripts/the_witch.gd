@@ -12,7 +12,7 @@ const PLAYER_COLLISION_FALLBACK_HALF := 16.0
 @export var air_acceleration: float = 1600.0
 @export var air_deceleration: float = 2000.0
 
-@export var jump_velocity: float = -650.0
+@export var jump_velocity: float = -700.0
 @export var gravity_multiplier: float = 1.0
 @export var fall_gravity_multiplier: float = 1.45
 @export var low_jump_multiplier: float = 2.3

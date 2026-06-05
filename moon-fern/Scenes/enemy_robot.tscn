@@ -1,27 +1,28 @@
 [gd_scene format=3 uid="uid://bi53qefaxicd1"]
 
-[ext_resource type="Script" path="res://Scripts/gleamwrought_enemy.gd" id="1_gleam"]
+[ext_resource type="Script" uid="uid://b85dky6xqtjor" path="res://Scripts/gleamwrought_enemy.gd" id="1_gleam"]
 [ext_resource type="Texture2D" uid="uid://bs3p4wtmo0ao8" path="res://Sprites/Gleamwright.png" id="1_gleam_tex"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_28r5x"]
-size = Vector2(21, 55.625)
+size = Vector2(25.5, 90)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h0tpn"]
-size = Vector2(47, 65)
+size = Vector2(73, 94.5)
 
 [node name="EnemyRobot" type="CharacterBody2D" unique_id=1260298667]
 script = ExtResource("1_gleam")
 
 [node name="Robot" type="Sprite2D" parent="." unique_id=817862422]
-scale = Vector2(0.032, 0.032)
+position = Vector2(13.000001, -11.999997)
+scale = Vector2(0.038500004, 0.04)
 texture = ExtResource("1_gleam_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=598523970]
-position = Vector2(-1, 4.1875)
+position = Vector2(1.25, -13)
 shape = SubResource("RectangleShape2D_28r5x")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1508790953]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2047972317]
-position = Vector2(-1, 0)
+position = Vector2(2.5, -14.75)
 shape = SubResource("RectangleShape2D_h0tpn")
