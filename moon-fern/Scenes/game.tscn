@@ -25,11 +25,11 @@ height = 100.0
 size = Vector2(60.5, 130.25)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ewbju"]
-radius = 230.0
-height = 912.0
+radius = 339.0
+height = 1590.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tree_interact"]
-size = Vector2(695.5, 1011)
+size = Vector2(1063.75, 1646.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cauldron_interact"]
 size = Vector2(120, 90)
@@ -44,7 +44,7 @@ size = Vector2(21, 27)
 script = ExtResource("9_cfb")
 
 [node name="Base forest" parent="." unique_id=201510789 instance=ExtResource("2_nnt18")]
-position = Vector2(341, 404)
+position = Vector2(318, 322.00003)
 
 [node name="ForestShieldManager" type="Node" parent="." unique_id=989220108]
 script = ExtResource("12_fshield")
@@ -77,12 +77,11 @@ position = Vector2(155.33333, 324.66666)
 shape = SubResource("RectangleShape2D_wowpa")
 
 [node name="Tree" type="Node2D" parent="." unique_id=1434168845]
-position = Vector2(598, -294)
+position = Vector2(584, -566)
 script = ExtResource("7_htree")
 
 [node name="Tree I" type="Sprite2D" parent="Tree" unique_id=320785314]
-position = Vector2(-22, -16)
-scale = Vector2(0.7920898, 0.72350264)
+scale = Vector2(1.2163575, 1.0889649)
 texture = ExtResource("3_gftree")
 
 [node name="AttackArea" type="Area2D" parent="Tree" unique_id=-447676245]
@@ -134,10 +133,12 @@ position = Vector2(495, 614)
 scale = Vector2(2, 2)
 
 [node name="Gleamwrought2" parent="." unique_id=1736234555 instance=ExtResource("8_enemy")]
-position = Vector2(1975, 694)
+position = Vector2(-1101, 783)
+scale = Vector2(2, 2)
 
 [node name="Gleamwrought3" parent="." unique_id=1736234556 instance=ExtResource("8_enemy")]
-position = Vector2(2157, 693)
+position = Vector2(-414, 666)
+scale = Vector2(2, 2)
 
 [node name="CorruptionHUD" type="CanvasLayer" parent="." unique_id=770903181]
 visible = false
@@ -182,10 +183,10 @@ layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -204.0
-offset_top = 16.0
-offset_right = -16.0
-offset_bottom = 56.0
+offset_left = -202.0
+offset_top = 11.0
+offset_right = -14.0
+offset_bottom = 51.0
 grow_horizontal = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="ForestShieldHUD/MinimalHUD" unique_id=1496602711]
