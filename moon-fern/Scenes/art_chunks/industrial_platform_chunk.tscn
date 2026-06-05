@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cindustrialplat"]
+
+[ext_resource type="Texture2D" uid="uid://c8j5i0ohovhoq" path="res://Sprites/ForestGroundAssets1.png" id="1_fga"]
+
+[node name="IndustrialPlatformChunk" type="Node2D"]
+
+[node name="PlateA" type="Sprite2D" parent="."]
+position = Vector2(-74.9, 0)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("1_fga")
+region_enabled = true
+region_rect = Rect2(2480, 830, 428, 290)
+
+[node name="PlateB" type="Sprite2D" parent="."]
+position = Vector2(74.9, 0)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("1_fga")
+region_enabled = true
+region_rect = Rect2(2480, 830, 428, 290)

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cgroundfloorshort"]
+
+[ext_resource type="Texture2D" uid="uid://c8j5i0ohovhoq" path="res://Sprites/ForestGroundAssets1.png" id="1_fga"]
+
+[node name="GroundFloorShortChunk" type="Node2D"]
+
+[node name="Tile01" type="Sprite2D" parent="."]
+position = Vector2(0, -37.8)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("1_fga")
+region_enabled = true
+region_rect = Rect2(2048, 344, 430, 216)

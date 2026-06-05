@@ -49,6 +49,7 @@ script = ExtResource("12_fshield")
 
 [node name="TheWitch" type="CharacterBody2D" parent="." unique_id=1722578828]
 z_index = 1
+position = Vector2(0, 100)
 script = ExtResource("1_wrm1d")
 
 [node name="WitchBody" type="Sprite2D" parent="TheWitch" unique_id=1451766428]

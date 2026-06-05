@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cs210myqa3cm7"]
+
+[ext_resource type="Texture2D" uid="uid://c8j5i0ohovhoq" path="res://Sprites/ForestGroundAssets1.png" id="1_fga"]
+
+[node name="GroundFloorLongChunk" type="Node2D" unique_id=13751633]
+
+[node name="Tile01" type="Sprite2D" parent="." unique_id=1576755755]
+position = Vector2(-122.000015, -37)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("1_fga")
+region_enabled = true
+region_rect = Rect2(2048, 344, 430, 216)
+
+[node name="Tile02" type="Sprite2D" parent="." unique_id=752525061]
+position = Vector2(0, -37.8)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("1_fga")
+region_enabled = true
+region_rect = Rect2(2048, 344, 430, 216)
+
+[node name="Tile03" type="Sprite2D" parent="." unique_id=104211728]
+position = Vector2(123.000015, -38)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("1_fga")
+region_enabled = true
+region_rect = Rect2(2048, 344, 430, 216)
