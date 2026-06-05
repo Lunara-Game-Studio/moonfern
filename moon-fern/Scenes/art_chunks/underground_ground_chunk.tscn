@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cundergroundgr"]
+
+[ext_resource type="Texture2D" uid="uid://c8j5i0ohovhoq" path="res://Sprites/ForestGroundAssets1.png" id="1_fga"]
+
+[node name="UndergroundGroundChunk" type="Node2D"]
+
+[node name="TileA" type="Sprite2D" parent="."]
+position = Vector2(-75.25, 0)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("1_fga")
+region_enabled = true
+region_rect = Rect2(2048, 812, 430, 220)
+
+[node name="TileB" type="Sprite2D" parent="."]
+position = Vector2(75.25, 0)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("1_fga")
+region_enabled = true
+region_rect = Rect2(2048, 812, 430, 220)
