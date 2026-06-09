@@ -1,15 +1,8 @@
 [gd_scene format=3 uid="uid://sl2fl5bw2wlb"]
 
 [ext_resource type="Texture2D" uid="uid://pslg8h37gxda" path="res://Sprites/Nyra.png" id="1_nyra"]
-[ext_resource type="Texture2D" uid="uid://ddsu2cqsqo4yx" path="res://Sprites/working_assets.png" id="1_qxrlw"]
 [ext_resource type="Script" uid="uid://dijof527jbsms" path="res://Scripts/the_witch.gd" id="1_wrm1d"]
 [ext_resource type="PackedScene" uid="uid://bo0f6fal52hyg" path="res://Scenes/base_forest.tscn" id="2_nnt18"]
-[ext_resource type="Texture2D" uid="uid://btjogwkquka4l" path="res://Sprites/cauldron.png" id="2_qxrlw"]
-[ext_resource type="Texture2D" uid="uid://chpwwexp7v38o" path="res://Sprites/Ground Floor Tree.png" id="3_gftree"]
-[ext_resource type="Script" uid="uid://i66jj27o3w4f" path="res://Scripts/herb.gd" id="5_wowpa"]
-[ext_resource type="Script" uid="uid://dkb85m26uspwr" path="res://Scripts/cauldron.gd" id="6_cauld"]
-[ext_resource type="Script" uid="uid://byw7rwllw2jbf" path="res://Scripts/healing_tree.gd" id="7_htree"]
-[ext_resource type="PackedScene" uid="uid://bi53qefaxicd1" path="res://Scenes/enemy_robot.tscn" id="8_enemy"]
 [ext_resource type="Script" uid="uid://biqmxheisbid8" path="res://Scripts/corruption_feedback.gd" id="9_cfb"]
 [ext_resource type="Script" uid="uid://bircjt5xoe0vt" path="res://Scripts/tree_corruption_hud.gd" id="10_hud"]
 [ext_resource type="Script" uid="uid://ddmu1ylpecqbo" path="res://Scripts/player_feedback_ui.gd" id="11_feedback"]
@@ -24,30 +17,17 @@ height = 100.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wowpa"]
 size = Vector2(60.5, 130.25)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ewbju"]
-radius = 339.0
-height = 1590.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tree_interact"]
-size = Vector2(1063.75, 1646.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cauldron_interact"]
-size = Vector2(120, 90)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wrm1d"]
-size = Vector2(54, 41)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i6g32"]
-size = Vector2(21, 27)
-
 [node name="Game" type="Node2D" unique_id=623895467]
 script = ExtResource("9_cfb")
+tree_path = NodePath("")
+enemy_path = NodePath("")
 
 [node name="Base forest" parent="." unique_id=201510789 instance=ExtResource("2_nnt18")]
 position = Vector2(318, 322.00003)
 
 [node name="ForestShieldManager" type="Node" parent="." unique_id=989220108]
 script = ExtResource("12_fshield")
+tree_1_path = NodePath("")
 
 [node name="TheWitch" type="CharacterBody2D" parent="." unique_id=1722578828]
 z_index = 5
@@ -75,70 +55,6 @@ script = ExtResource("14_cam")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TheWitch/Area2D" unique_id=1625664951]
 position = Vector2(155.33333, 324.66666)
 shape = SubResource("RectangleShape2D_wowpa")
-
-[node name="Tree" type="Node2D" parent="." unique_id=1434168845]
-position = Vector2(584, -566)
-script = ExtResource("7_htree")
-
-[node name="Tree I" type="Sprite2D" parent="Tree" unique_id=320785314]
-scale = Vector2(1.2163575, 1.0889649)
-texture = ExtResource("3_gftree")
-
-[node name="AttackArea" type="Area2D" parent="Tree" unique_id=-447676245]
-collision_layer = 0
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/AttackArea" unique_id=-1447774244]
-shape = SubResource("CapsuleShape2D_ewbju")
-
-[node name="InteractArea" type="Area2D" parent="Tree" unique_id=262398589]
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/InteractArea" unique_id=1315298058]
-shape = SubResource("RectangleShape2D_tree_interact")
-
-[node name="Cauldron" type="StaticBody2D" parent="." unique_id=1381955034]
-script = ExtResource("6_cauld")
-
-[node name="InteractArea" type="Area2D" parent="Cauldron" unique_id=343703945]
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cauldron/InteractArea" unique_id=2117154059]
-position = Vector2(1086, 623.5)
-shape = SubResource("RectangleShape2D_cauldron_interact")
-
-[node name="Sprite2D" type="Sprite2D" parent="Cauldron" unique_id=1982286376]
-position = Vector2(1088, 622)
-texture = ExtResource("2_qxrlw")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cauldron" unique_id=92724226]
-position = Vector2(1086, 623.5)
-shape = SubResource("RectangleShape2D_wrm1d")
-
-[node name="Herb" type="Area2D" parent="." unique_id=1998834664]
-script = ExtResource("5_wowpa")
-
-[node name="Sprite2D" type="Sprite2D" parent="Herb" unique_id=1125149645]
-position = Vector2(333, 625)
-texture = ExtResource("1_qxrlw")
-region_enabled = true
-region_rect = Rect2(311.1662, 305.76932, 26.38742, 40.66263)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Herb" unique_id=1729247818]
-position = Vector2(333, 624)
-shape = SubResource("RectangleShape2D_i6g32")
-
-[node name="Gleamwrought" parent="." unique_id=1736234554 instance=ExtResource("8_enemy")]
-position = Vector2(495, 614)
-scale = Vector2(2, 2)
-
-[node name="Gleamwrought2" parent="." unique_id=1736234555 instance=ExtResource("8_enemy")]
-position = Vector2(-1101, 783)
-scale = Vector2(2, 2)
-
-[node name="Gleamwrought3" parent="." unique_id=1736234556 instance=ExtResource("8_enemy")]
-position = Vector2(-414, 666)
-scale = Vector2(2, 2)
 
 [node name="CorruptionHUD" type="CanvasLayer" parent="." unique_id=770903181]
 visible = false
@@ -300,5 +216,4 @@ text = "Slot 1: Empty"
 [node name="NotificationTimer" type="Timer" parent="PlayerFeedbackHUD" unique_id=485727462]
 one_shot = true
 
-[connection signal="body_entered" from="Herb" to="Herb" method="_on_body_entered"]
 [connection signal="timeout" from="PlayerFeedbackHUD/NotificationTimer" to="PlayerFeedbackHUD" method="_on_notification_timer_timeout"]

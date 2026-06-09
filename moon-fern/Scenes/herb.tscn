@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://idfui02ce33u"]
+
+[ext_resource type="Script" uid="uid://i66jj27o3w4f" path="res://Scripts/herb.gd" id="1_kil5a"]
+[ext_resource type="Texture2D" uid="uid://ddsu2cqsqo4yx" path="res://Sprites/working_assets.png" id="2_aub5u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i6g32"]
+size = Vector2(21, 27)
+
+[node name="Herb" type="Area2D" unique_id=122476355]
+script = ExtResource("1_kil5a")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=917732360]
+position = Vector2(333, 625)
+texture = ExtResource("2_aub5u")
+region_enabled = true
+region_rect = Rect2(311.1662, 305.76932, 26.38742, 40.66263)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1083902249]
+position = Vector2(333, 624)
+shape = SubResource("RectangleShape2D_i6g32")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
