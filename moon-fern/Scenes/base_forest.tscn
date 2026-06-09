@@ -2,21 +2,13 @@
 
 [ext_resource type="TileSet" uid="uid://c7u2pcknupud0" path="res://Sprites/Tiles/GroundTileSet.tres" id="1_lacfd"]
 [ext_resource type="Script" uid="uid://c5jp7red6i4rq" path="res://Scripts/Base_to_undeground_transition.gd" id="2_kxkff"]
-[ext_resource type="Script" uid="uid://byw7rwllw2jbf" path="res://Scripts/healing_tree.gd" id="3_0174m"]
 [ext_resource type="PackedScene" uid="uid://bi53qefaxicd1" path="res://Scenes/enemy_robot.tscn" id="3_qts4s"]
-[ext_resource type="Texture2D" uid="uid://chpwwexp7v38o" path="res://Sprites/Ground Floor Tree.png" id="4_qts4s"]
+[ext_resource type="PackedScene" uid="uid://bo5bd3ue0plwc" path="res://Scenes/base_level_tree.tscn" id="6_g3w2c"]
 [ext_resource type="PackedScene" uid="uid://bherbpickup01" path="res://Scenes/herb_pickup.tscn" id="6_gwt8x"]
 [ext_resource type="PackedScene" uid="uid://nesaby02fo81" path="res://Scenes/cauldron.tscn" id="7_g3w2c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lacfd"]
 size = Vector2(33.96934, 20)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gwt8x"]
-radius = 339.0
-height = 1590.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g3w2c"]
-size = Vector2(1063.75, 1646.5)
 
 [node name="Base forest" type="Node2D" unique_id=516694202]
 scale = Vector2(1.3, 1.3)
@@ -58,36 +50,19 @@ tile_set = ExtResource("1_lacfd")
 
 [node name="EnemyRobot" parent="." unique_id=1260298667 instance=ExtResource("3_qts4s")]
 position = Vector2(1272.3079, 283.07703)
+attack_tree_path = NodePath("")
 
 [node name="EnemyRobot2" parent="." unique_id=1803844302 instance=ExtResource("3_qts4s")]
 position = Vector2(-1804.6155, -706.9231)
+attack_tree_path = NodePath("")
 
 [node name="EnemyRobot3" parent="." unique_id=885031745 instance=ExtResource("3_qts4s")]
 position = Vector2(-5773.077, -540.7692)
+attack_tree_path = NodePath("")
 
 [node name="EnemyRobot4" parent="." unique_id=1082511237 instance=ExtResource("3_qts4s")]
 position = Vector2(-2023.846, 409.23083)
-
-[node name="Tree" type="Node2D" parent="." unique_id=496335971]
-position = Vector2(223.84616, -1023.07697)
-script = ExtResource("3_0174m")
-
-[node name="Tree I" type="Sprite2D" parent="Tree" unique_id=1013405351]
-scale = Vector2(1.2163575, 1.0889649)
-texture = ExtResource("4_qts4s")
-
-[node name="AttackArea" type="Area2D" parent="Tree" unique_id=978689601]
-collision_layer = 0
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/AttackArea" unique_id=1213509758]
-shape = SubResource("CapsuleShape2D_gwt8x")
-
-[node name="InteractArea" type="Area2D" parent="Tree" unique_id=799548733]
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/InteractArea" unique_id=631360436]
-shape = SubResource("RectangleShape2D_g3w2c")
+attack_tree_path = NodePath("")
 
 [node name="HerbPickup" parent="." unique_id=592287251 instance=ExtResource("6_gwt8x")]
 position = Vector2(-793.077, 296.15387)
@@ -106,5 +81,8 @@ position = Vector2(-992.3078, -703.07697)
 
 [node name="Cauldron2" parent="." unique_id=1422480461 instance=ExtResource("7_g3w2c")]
 position = Vector2(-1411.5386, 419.23077)
+
+[node name="Tree" parent="." unique_id=1022795742 groups=["healable_tree"] instance=ExtResource("6_g3w2c")]
+position = Vector2(244.61523, -919.2311)
 
 [connection signal="body_entered" from="base_forest/Area2D" to="base_forest/Area2D" method="_on_body_entered"]

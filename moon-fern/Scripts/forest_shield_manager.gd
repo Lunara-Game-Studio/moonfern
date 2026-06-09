@@ -15,7 +15,7 @@ var _active_tree_index: int = 0
 func _ready() -> void:
 	add_to_group("forest_shield_manager")
 	_build_tree_entries()
-	_wire_tree_1()
+	call_deferred("_wire_tree_1")
 	_mark_tree_under_attack(0)
 	call_deferred("_refresh_shield")
 
@@ -104,7 +104,8 @@ func _build_tree_entries() -> void:
 
 
 func _wire_tree_1() -> void:
-	var tree := get_node_or_null(tree_1_path)
+	var tree := get_tree().get_first_node_in_group("healable_tree")
+	print("healable_tree members: ", get_tree().get_nodes_in_group("healable_tree"))
 	if tree == null:
 		push_error("ForestShieldManager: Tree 1 not found at %s" % tree_1_path)
 		return
