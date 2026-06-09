@@ -7,7 +7,7 @@
 size = Vector2(48.444443, 71.888885)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h0tpn"]
-size = Vector2(44.740738, 51.851852)
+size = Vector2(33.481483, 48.592594)
 
 [node name="EnemyRobot" type="CharacterBody2D" unique_id=1260298667]
 scale = Vector2(1.5, 1.5)
@@ -27,6 +27,6 @@ shape = SubResource("RectangleShape2D_28r5x")
 scale = Vector2(1.5, 1.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2047972317]
-position = Vector2(8.666669, -15.77778)
+position = Vector2(10.000001, -17.333338)
 scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_h0tpn")
