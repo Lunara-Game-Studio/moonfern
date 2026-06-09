@@ -4,25 +4,29 @@
 [ext_resource type="Texture2D" uid="uid://bs3p4wtmo0ao8" path="res://Sprites/Gleamwright.png" id="1_gleam_tex"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_28r5x"]
-size = Vector2(25.5, 90)
+size = Vector2(48.444443, 71.888885)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h0tpn"]
-size = Vector2(73, 94.5)
+size = Vector2(44.740738, 51.851852)
 
 [node name="EnemyRobot" type="CharacterBody2D" unique_id=1260298667]
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_gleam")
 
 [node name="Robot" type="Sprite2D" parent="." unique_id=817862422]
-position = Vector2(13.000001, -11.999997)
-scale = Vector2(0.038500004, 0.04)
+position = Vector2(29.999989, -22.999996)
+scale = Vector2(0.047, 0.04733333)
 texture = ExtResource("1_gleam_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=598523970]
-position = Vector2(1.25, -13)
+position = Vector2(15.000003, -26.583334)
+scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_28r5x")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1508790953]
+scale = Vector2(1.5, 1.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2047972317]
-position = Vector2(2.5, -14.75)
+position = Vector2(8.666669, -15.77778)
+scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_h0tpn")

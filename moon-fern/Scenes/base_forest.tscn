@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bi53qefaxicd1" path="res://Scenes/enemy_robot.tscn" id="3_qts4s"]
 [ext_resource type="Texture2D" uid="uid://chpwwexp7v38o" path="res://Sprites/Ground Floor Tree.png" id="4_qts4s"]
 [ext_resource type="PackedScene" uid="uid://bherbpickup01" path="res://Scenes/herb_pickup.tscn" id="6_gwt8x"]
+[ext_resource type="PackedScene" uid="uid://nesaby02fo81" path="res://Scenes/cauldron.tscn" id="7_g3w2c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lacfd"]
 size = Vector2(33.96934, 20)
@@ -68,7 +69,6 @@ position = Vector2(-5773.077, -540.7692)
 position = Vector2(-2023.846, 409.23083)
 
 [node name="Tree" type="Node2D" parent="." unique_id=496335971]
-visible = false
 position = Vector2(223.84616, -1023.07697)
 script = ExtResource("3_0174m")
 
@@ -90,6 +90,21 @@ collision_layer = 0
 shape = SubResource("RectangleShape2D_g3w2c")
 
 [node name="HerbPickup" parent="." unique_id=592287251 instance=ExtResource("6_gwt8x")]
-position = Vector2(146.92307, 238.46152)
+position = Vector2(-793.077, 296.15387)
+
+[node name="HerbPickup2" parent="." unique_id=2113748654 instance=ExtResource("6_gwt8x")]
+position = Vector2(-5877.6924, -1383.0769)
+
+[node name="HerbPickup3" parent="." unique_id=420548897 instance=ExtResource("6_gwt8x")]
+position = Vector2(-2374.6152, -326.9231)
+
+[node name="HerbPickup4" parent="." unique_id=1687496660 instance=ExtResource("6_gwt8x")]
+position = Vector2(2033.0776, 284.61542)
+
+[node name="Cauldron" parent="." unique_id=607860118 instance=ExtResource("7_g3w2c")]
+position = Vector2(-992.3078, -703.07697)
+
+[node name="Cauldron2" parent="." unique_id=1422480461 instance=ExtResource("7_g3w2c")]
+position = Vector2(-1411.5386, 419.23077)
 
 [connection signal="body_entered" from="base_forest/Area2D" to="base_forest/Area2D" method="_on_body_entered"]

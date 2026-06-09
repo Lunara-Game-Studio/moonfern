@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bo5bd3ue0plwc"]
+
+[ext_resource type="Script" uid="uid://byw7rwllw2jbf" path="res://Scripts/healing_tree.gd" id="1_5s04l"]
+[ext_resource type="Texture2D" uid="uid://chpwwexp7v38o" path="res://Sprites/Ground Floor Tree.png" id="2_577fb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gwt8x"]
+radius = 339.0
+height = 1590.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g3w2c"]
+size = Vector2(1063.75, 1646.5)
+
+[node name="Tree" type="Node2D" unique_id=1022795742]
+script = ExtResource("1_5s04l")
+
+[node name="Tree I" type="Sprite2D" parent="." unique_id=1495150645]
+scale = Vector2(1.2163575, 1.0889649)
+texture = ExtResource("2_577fb")
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=303474772]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1432658723]
+shape = SubResource("CapsuleShape2D_gwt8x")
+
+[node name="InteractArea" type="Area2D" parent="." unique_id=595987528]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea" unique_id=1132350255]
+shape = SubResource("RectangleShape2D_g3w2c")
