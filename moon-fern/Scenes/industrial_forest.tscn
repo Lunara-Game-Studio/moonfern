@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
 [gd_scene format=4 uid="uid://cvifpvaer7iaq"]
-=======
-[gd_scene format=4 uid="uid://2frx7kmmbwax"]
->>>>>>> Stashed changes
 
 [ext_resource type="TileSet" uid="uid://b1rc8hdhlmv42" path="res://Sprites/Tiles/new_tile_set.tres" id="1_fqe3k"]
 [ext_resource type="SpriteFrames" uid="uid://5110mcapek8h" path="res://Sprites/Animations/new_sprite_frames.tres" id="2_hhhug"]

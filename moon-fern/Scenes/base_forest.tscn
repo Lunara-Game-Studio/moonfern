@@ -32,27 +32,9 @@ scale = Vector2(98.01952, 5.31999)
 shape = SubResource("RectangleShape2D_lacfd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="base_forest z = 0/World Portal" unique_id=1279035023]
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 position = Vector2(4867.693, 1947.6924)
-=======
-position = Vector2(4666.1543, 1952.3077)
->>>>>>> Stashed changes
 scale = Vector2(0.29772565, 0.27837908)
 sprite_frames = ExtResource("3_dcs57")
-autoplay = "default"
-
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="base_forest z = 0/World Portal" unique_id=374900564]
-position = Vector2(5403.077, 1955.3846)
-scale = Vector2(0.29772565, 0.27837908)
-sprite_frames = ExtResource("3_dcs57")
-autoplay = "default"
-
-[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="base_forest z = 0/World Portal" unique_id=1584353828]
-position = Vector2(6163.0776, 1952.3075)
-scale = Vector2(0.29772565, 0.27837908)
-sprite_frames = ExtResource("3_dcs57")
-autoplay = "default"
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="base_forest z = 0/World Portal" unique_id=735524844]
 position = Vector2(5686.1543, 1944.6152)
@@ -62,24 +44,7 @@ sprite_frames = ExtResource("3_dcs57")
 [node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="base_forest z = 0/World Portal" unique_id=185113770]
 position = Vector2(6475.385, 1947.6921)
 scale = Vector2(0.29772565, 0.27837908)
-=======
-position = Vector2(4687.692, 1993.8461)
-scale = Vector2(0.28127396, 0.28118914)
->>>>>>> Stashed changes
 sprite_frames = ExtResource("3_dcs57")
-autoplay = "default"
-
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="base_forest z = 0/World Portal" unique_id=2123657196]
-position = Vector2(5470.7695, 1989.2307)
-scale = Vector2(0.28127396, 0.28118914)
-sprite_frames = ExtResource("3_dcs57")
-autoplay = "default"
-
-[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="base_forest z = 0/World Portal" unique_id=410274211]
-position = Vector2(6195.385, 1989.2307)
-scale = Vector2(0.28127396, 0.28118914)
-sprite_frames = ExtResource("3_dcs57")
-autoplay = "default"
 
 [node name="World Barrier2" type="Area2D" parent="base_forest z = 0" unique_id=875916139]
 

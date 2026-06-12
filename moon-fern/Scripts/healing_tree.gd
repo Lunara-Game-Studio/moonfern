@@ -1,24 +1,16 @@
 extends Node2D
 
-signal health_changed(percent: float)
-signal became_critical
-signal became_fully_corrupted
+signal charge_changed(percent: float)
 signal healed
-signal stabilized
 signal under_attack_changed(is_under_attack: bool)
 
-@export var max_tree_health: float = 100.0
-@export var current_tree_health: float = 100.0
-@export var corruption_rate: float = 5.0
-@export var critical_threshold: float = 30.0
-@export var health_debug_interval: float = 5.0
-@export var healing_amount_per_potion: float = 25.0
+@export var max_tree_charge: float = 100.0
+@export var current_tree_charge: float = 0.0
+@export var charge_amount_per_potion: float = 25.0
+@export var charge_debug_interval: float = 5.0
 
-var is_healed := false
-var is_stabilized := false
-var _was_critical := false
-var _was_fully_corrupted := false
-var _health_debug_timer := 0.0
+var is_fully_charged := false
+var _charge_debug_timer := 0.0
 var _pulse_time := 0.0
 var _is_under_attack := false
 var _attackers_nearby := 0
@@ -51,15 +43,16 @@ func _ready() -> void:
 
 	_setup_attack_area()
 
-	current_tree_health = clampf(current_tree_health, 0.0, max_tree_health)
-	_health_debug_timer = health_debug_interval
+	current_tree_charge = clampf(current_tree_charge, 0.0, max_tree_charge)
+	is_fully_charged = current_tree_charge >= max_tree_charge
+	_charge_debug_timer = charge_debug_interval
 	_apply_visual()
-	health_changed.emit(get_health_percent())
+	charge_changed.emit(get_charge_percent())
 
 
 func _setup_attack_area() -> void:
 	if _attack_area == null:
-		push_warning("Tree AttackArea missing — corruption will not trigger from enemies")
+		push_warning("Tree AttackArea missing — enemy attacks will not be detected")
 		return
 
 	_attack_area.monitoring = true
@@ -73,120 +66,73 @@ func _setup_attack_area() -> void:
 
 
 func _process(delta: float) -> void:
-	if is_healed:
-		return
-
 	_update_under_attack_state()
-
-	if not is_stabilized and _is_under_attack:
-		_tick_corruption(delta)
-
 	_pulse_time += delta
 	_apply_visual()
 
-	_health_debug_timer -= delta
-	if _health_debug_timer <= 0.0:
-		_health_debug_timer = health_debug_interval
-		print("Tree health: ", snappedf(current_tree_health, 0.1))
+	_charge_debug_timer -= delta
+	if _charge_debug_timer <= 0.0:
+		_charge_debug_timer = charge_debug_interval
+		print("Tree charge: ", snappedf(current_tree_charge, 0.1))
+
+
+func get_charge_percent() -> float:
+	if max_tree_charge <= 0.0:
+		return 0.0
+	return clampf((current_tree_charge / max_tree_charge) * 100.0, 0.0, 100.0)
 
 
 func get_health_percent() -> float:
-	if max_tree_health <= 0.0:
-		return 0.0
-	return clampf((current_tree_health / max_tree_health) * 100.0, 0.0, 100.0)
+	return get_charge_percent()
 
 
-func is_critical() -> bool:
-	return not is_healed and current_tree_health <= critical_threshold and current_tree_health > 0.0
-
-
-func is_fully_corrupted() -> bool:
-	return not is_healed and current_tree_health <= 0.0
-
-
-func is_restored() -> bool:
-	return (
-		not is_healed
-		and not is_fully_corrupted()
-		and not is_critical()
-		and get_health_percent() < 100.0
-		and not is_stabilized
-	)
+func is_healed() -> bool:
+	return is_fully_charged
 
 
 func is_under_attack() -> bool:
-	return _is_under_attack and not is_stabilized and not is_healed
+	return _is_under_attack and not is_fully_charged
 
 
 func get_tree_status_text() -> String:
-	if is_healed:
-		return "Healed"
-	if is_stabilized:
-		return "Stabilized"
+	if is_fully_charged:
+		return "Fully Charged"
 	if is_under_attack():
 		return "Under Attack"
-	if is_fully_corrupted():
-		return "Fully Corrupted"
-	if is_critical():
-		return "Critical"
-	if is_restored():
-		return "Restored"
-	if get_health_percent() < 100.0:
-		return "Damaged"
-	return "Healthy"
-
-
-func _tick_corruption(delta: float) -> void:
-	if current_tree_health <= 0.0:
-		return
-
-	current_tree_health = maxf(0.0, current_tree_health - corruption_rate * delta)
-	_check_corruption_transitions()
-	health_changed.emit(get_health_percent())
-
-
-func _check_corruption_transitions() -> void:
-	if not _was_critical and is_critical():
-		_was_critical = true
-		print("Tree is critically corrupted")
-		became_critical.emit()
-
-	if not _was_fully_corrupted and is_fully_corrupted():
-		_was_fully_corrupted = true
-		print("Tree has fully corrupted")
-		print("TODO: Corruption should strengthen The Gleamwrought later")
-		became_fully_corrupted.emit()
+	if current_tree_charge <= 0.0:
+		return "Dormant"
+	return "Charging"
 
 
 func interact(player: Node) -> void:
-	if is_healed:
-		print("Tree is already healed")
+	if is_fully_charged:
+		print("Tree is already fully charged")
 		return
 
 	if player.has_method("has_carried_item") and player.has_carried_item("Potion"):
 		if player.consume_carried_item("Potion"):
-			_apply_potion_heal(player)
-			print("Tree healed from carried Potion")
+			_apply_potion_charge(player)
+			print("Tree charged from carried Potion")
 		else:
-			_notify(player, "Need Potion to heal this tree")
+			_notify(player, "Need Potion to charge this tree")
 		return
 
 	if player.has_method("has_carried_item") and player.has_carried_item("Herb"):
-		_notify(player, "Need Potion to heal this tree")
+		_notify(player, "Need Potion to charge this tree")
 		return
 
 	if player.is_carrying:
-		_notify(player, "Need Potion to heal this tree")
+		_notify(player, "Need Potion to charge this tree")
 		return
 
 	var dropped_potion := _find_dropped_potion_in_area()
 	if dropped_potion:
 		dropped_potion.queue_free()
-		_apply_potion_heal(player)
+		_apply_potion_charge(player)
 		print("Tree consumed dropped Potion")
 		return
 
-	_notify(player, "Need Potion to heal this tree")
+	_notify(player, "Need Potion to charge this tree")
 
 
 func _notify(player: Node, message: String) -> void:
@@ -194,45 +140,34 @@ func _notify(player: Node, message: String) -> void:
 		player.show_notification(message)
 
 
-func _apply_potion_heal(player: Node) -> void:
-	var was_fully_corrupted := is_fully_corrupted()
-	var before_percent: float = get_health_percent()
+func _apply_potion_charge(player: Node) -> void:
+	var before_percent: float = get_charge_percent()
 
-	current_tree_health = minf(
-		max_tree_health,
-		current_tree_health + healing_amount_per_potion
+	current_tree_charge = minf(
+		max_tree_charge,
+		current_tree_charge + charge_amount_per_potion
 	)
-	current_tree_health = clampf(current_tree_health, 0.0, max_tree_health)
+	current_tree_charge = clampf(current_tree_charge, 0.0, max_tree_charge)
 
-	var after_percent: float = get_health_percent()
+	var after_percent: float = get_charge_percent()
 	var gained_percent: int = maxi(0, int(round(after_percent - before_percent)))
 
 	_apply_visual()
-	health_changed.emit(after_percent)
+	charge_changed.emit(after_percent)
 
-	if current_tree_health >= max_tree_health:
-		is_healed = true
-		current_tree_health = max_tree_health
-		print("Tree fully healed")
+	if current_tree_charge >= max_tree_charge:
+		is_fully_charged = true
+		current_tree_charge = max_tree_charge
+		print("Tree fully charged")
 		_notify(player, "Tree fully healed!")
 		healed.emit()
-		health_changed.emit(get_health_percent())
+		charge_changed.emit(get_charge_percent())
+		remove_from_group("active_corruption_target")
 		return
 
-	is_healed = false
-	print("Tree partially restored")
-	print("Tree health: %d%%" % int(round(after_percent)))
-	if was_fully_corrupted:
-		print("Restored part of fully corrupted tree")
-	_notify(player, "Tree restored +%d%%" % gained_percent)
-
-	if not is_stabilized:
-		is_stabilized = true
-		remove_from_group("active_corruption_target")
-		print("Tree stabilized")
-		stabilized.emit()
-		_notify(player, "Tree stabilized!")
-		health_changed.emit(get_health_percent())
+	print("Tree charge increased")
+	print("Tree charge: %d%%" % int(round(after_percent)))
+	_notify(player, "Tree charge +%d%%" % gained_percent)
 
 
 func _get_interact_bounds() -> Rect2:
@@ -267,21 +202,21 @@ func _find_dropped_potion_in_area() -> Node:
 
 
 func _apply_visual() -> void:
-	if is_healed:
+	if is_fully_charged:
 		_sprite.modulate = Color(0.85, 1.0, 0.85)
-	elif is_stabilized:
-		_sprite.modulate = Color(0.72, 0.95, 0.82)
 	elif is_under_attack():
 		var stress: float = 0.9 + 0.1 * abs(sin(_pulse_time * 5.0))
 		_sprite.modulate = Color(0.65 * stress, 0.5 * stress, 0.55 * stress)
-	elif is_fully_corrupted():
+	elif current_tree_charge <= 0.0:
 		var dim: float = 0.7 + 0.3 * abs(sin(_pulse_time * 4.0))
 		_sprite.modulate = Color(0.25 * dim, 0.2 * dim, 0.3 * dim)
-	elif is_critical():
-		var flash: float = 0.85 + 0.15 * abs(sin(_pulse_time * 8.0))
-		_sprite.modulate = Color(0.75 * flash, 0.35 * flash, 0.55 * flash)
 	else:
-		_sprite.modulate = Color(0.55, 0.45, 0.5)
+		var progress: float = get_charge_percent() / 100.0
+		_sprite.modulate = Color(
+			lerpf(0.35, 0.75, progress),
+			lerpf(0.3, 0.95, progress),
+			lerpf(0.35, 0.8, progress)
+		)
 
 
 func _on_body_entered(body: Node2D) -> void:

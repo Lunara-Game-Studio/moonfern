@@ -120,7 +120,9 @@ func _try_start_attacking_tree() -> void:
 func _should_attack_tree() -> bool:
 	if _attack_tree == null or not is_instance_valid(_attack_tree):
 		return false
-	if _attack_tree.has_method("is_stabilized") and _attack_tree.is_stabilized:
+	if _attack_tree.has_method("is_healed") and _attack_tree.is_healed():
+		return false
+	if _attack_tree.has_method("is_fully_charged") and _attack_tree.is_fully_charged:
 		return false
 	return _get_tree_distance() <= tree_attack_radius
 

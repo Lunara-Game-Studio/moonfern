@@ -1,6 +1,9 @@
 # macOS
 .DS_Store
 
+# Local Godot editor download (see .vscode/settings.json)
+tools/godot/
+
 # Godot 4+ specific ignores
 .godot/
 .nomedia

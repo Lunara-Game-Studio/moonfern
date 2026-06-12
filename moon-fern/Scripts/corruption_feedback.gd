@@ -32,19 +32,10 @@ func _setup() -> void:
 	elif shield_hud and shield_hud.has_method("setup"):
 		shield_hud.setup(shield_manager)
 
-	if tree.has_signal("became_critical"):
-		tree.became_critical.connect(_on_tree_critical.bind(enemy, hud))
-	if tree.has_signal("became_fully_corrupted"):
-		tree.became_fully_corrupted.connect(_on_tree_fully_corrupted.bind(enemy, hud))
 	if tree.has_signal("healed"):
 		tree.healed.connect(_on_tree_healed.bind(enemy, hud))
-	if tree.has_signal("stabilized"):
-		tree.stabilized.connect(_on_tree_stabilized)
 	if tree.has_signal("under_attack_changed"):
 		tree.under_attack_changed.connect(_on_tree_under_attack_changed)
-
-	if shield_manager and shield_manager.has_signal("active_target_changed"):
-		shield_manager.active_target_changed.connect(_on_active_target_changed)
 
 
 func _notify_player(message: String) -> void:
@@ -53,38 +44,16 @@ func _notify_player(message: String) -> void:
 		player.show_notification(message)
 
 
-func _on_tree_critical(_enemy: Node, hud: Node) -> void:
-	_notify_player("Tree critical!")
-	if hud.has_method("on_tree_critical"):
-		hud.on_tree_critical()
-	_apply_enemy_pressure("critical")
-
-
-func _on_tree_fully_corrupted(_enemy: Node, hud: Node) -> void:
-	_notify_player("Tree fully corrupted!")
-	if hud.has_method("on_tree_fully_corrupted"):
-		hud.on_tree_fully_corrupted()
-	_apply_enemy_pressure("fully_corrupted")
-
-
 func _on_tree_healed(_enemy: Node, hud: Node) -> void:
-	# Full-heal toast is shown by healing_tree when potion brings health to 100%.
 	if hud.has_method("on_tree_healed"):
 		hud.on_tree_healed()
 	_apply_enemy_pressure("healed")
-
-
-func _on_tree_stabilized() -> void:
-	_apply_enemy_pressure("healed")
+	_notify_player("Next area unlocked!")
 
 
 func _on_tree_under_attack_changed(is_under_attack: bool) -> void:
 	if is_under_attack:
 		_notify_player("Tree under attack!")
-
-
-func _on_active_target_changed(_index: int, display_name: String) -> void:
-	_notify_player("%s is under attack!" % display_name)
 
 
 func _apply_enemy_pressure(level: String) -> void:
