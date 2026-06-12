@@ -33,6 +33,7 @@ func toggle_forest_status_panel() -> void:
 
 
 func _on_forest_shield_changed(_percent: float) -> void:
+	print("HUD received shield change: ", _percent)
 	_refresh_minimal_display()
 	if _forest_status_panel.visible:
 		_refresh_forest_status_display()

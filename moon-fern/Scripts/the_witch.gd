@@ -12,7 +12,7 @@ const PLAYER_COLLISION_FALLBACK_HALF := 16.0
 @export var air_acceleration: float = 1600.0
 @export var air_deceleration: float = 2000.0
 
-@export var jump_velocity: float = -650.0
+@export var jump_velocity: float = -720.0
 @export var gravity_multiplier: float = 1.0
 @export var fall_gravity_multiplier: float = 1.45
 @export var low_jump_multiplier: float = 2.3
@@ -207,6 +207,11 @@ func on_caught_by_enemy() -> void:
 		print("Nyra dropped item after being caught")
 	else:
 		print("Nyra was caught but had nothing to drop")
+		
+	var shield_manager := get_tree().get_first_node_in_group("forest_shield_manager")
+	if shield_manager and shield_manager.has_method("take_damage"):
+		shield_manager.take_damage(10.0)
+		print("shield manager found: ", shield_manager)
 
 
 func drop_item() -> void:

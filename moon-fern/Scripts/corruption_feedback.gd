@@ -8,7 +8,10 @@ extends Node2D
 
 
 func _ready() -> void:
-	var tree := get_node_or_null(tree_path)
+	call_deferred("_setup")
+
+func _setup() -> void:
+	var tree := get_tree().get_first_node_in_group("healable_tree")
 	var enemy := get_node_or_null(enemy_path)
 	var hud := get_node_or_null(hud_path)
 

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://nesaby02fo81"]
+
+[ext_resource type="Script" uid="uid://dkb85m26uspwr" path="res://Scripts/cauldron.gd" id="1_2rulr"]
+[ext_resource type="Texture2D" uid="uid://brditwdwucnpa" path="res://Sprites/Cauldron .png" id="2_2rulr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cauldron_interact"]
+size = Vector2(79, 76)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wrm1d"]
+size = Vector2(54, 54)
+
+[node name="Cauldron" type="StaticBody2D" unique_id=607860118]
+script = ExtResource("1_2rulr")
+
+[node name="InteractArea" type="Area2D" parent="." unique_id=1174286853]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea" unique_id=1793810456]
+position = Vector2(-0.5, -6)
+shape = SubResource("RectangleShape2D_cauldron_interact")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1711174589]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_2rulr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1548174486]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_wrm1d")
