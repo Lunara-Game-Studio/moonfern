@@ -32,7 +32,17 @@ scale = Vector2(98.01952, 5.31999)
 shape = SubResource("RectangleShape2D_lacfd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="base_forest z = 0/World Portal" unique_id=1279035023]
-position = Vector2(5081.5386, 1947.6921)
+position = Vector2(4867.693, 1947.6924)
+scale = Vector2(0.29772565, 0.27837908)
+sprite_frames = ExtResource("3_dcs57")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="base_forest z = 0/World Portal" unique_id=735524844]
+position = Vector2(5686.1543, 1944.6152)
+scale = Vector2(0.29772565, 0.27837908)
+sprite_frames = ExtResource("3_dcs57")
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="base_forest z = 0/World Portal" unique_id=185113770]
+position = Vector2(6475.385, 1947.6921)
 scale = Vector2(0.29772565, 0.27837908)
 sprite_frames = ExtResource("3_dcs57")
 
