@@ -2,6 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://c7u2pcknupud0" path="res://Sprites/Tiles/GroundTileSet.tres" id="1_lacfd"]
 [ext_resource type="Script" uid="uid://c5jp7red6i4rq" path="res://Scripts/Base_to_undeground_transition.gd" id="2_kxkff"]
+[ext_resource type="SpriteFrames" uid="uid://5110mcapek8h" path="res://Sprites/Animations/new_sprite_frames.tres" id="3_dcs57"]
 [ext_resource type="TileSet" uid="uid://b1rc8hdhlmv42" path="res://Sprites/Tiles/new_tile_set.tres" id="3_g3w2c"]
 [ext_resource type="PackedScene" uid="uid://bi53qefaxicd1" path="res://Scenes/enemy_robot.tscn" id="3_qts4s"]
 [ext_resource type="PackedScene" uid="uid://bo5bd3ue0plwc" path="res://Scenes/base_level_tree.tscn" id="6_g3w2c"]
@@ -29,6 +30,11 @@ script = ExtResource("2_kxkff")
 position = Vector2(5743.8, 2010)
 scale = Vector2(98.01952, 5.31999)
 shape = SubResource("RectangleShape2D_lacfd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="base_forest z = 0/World Portal" unique_id=1279035023]
+position = Vector2(5081.5386, 1947.6921)
+scale = Vector2(0.29772565, 0.27837908)
+sprite_frames = ExtResource("3_dcs57")
 
 [node name="World Barrier2" type="Area2D" parent="base_forest z = 0" unique_id=875916139]
 

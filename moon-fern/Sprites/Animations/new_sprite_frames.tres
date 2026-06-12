@@ -1,0 +1,21 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://5110mcapek8h"]
+
+[ext_resource type="Texture2D" uid="uid://ddvetyfl3x6gp" path="res://Sprites/Portal_Light asset.png" id="1_lcwju"]
+[ext_resource type="Texture2D" uid="uid://cb246rw8gu06u" path="res://Sprites/Portal_Light asset2.png" id="2_euj4r"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_lcwju")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_euj4r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_lcwju")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
